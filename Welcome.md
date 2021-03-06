@@ -5,3 +5,9 @@ This is an ongoing project/experiment to digitize and link all my notes. Formerl
 This is personal project and I do **NOT** strive for completion or correctness. This is basically just a dump for ideas.
 
 ## Table of contents
+I try to split the information by topics. 
+
+- [[Programming]]
+- [[DevOps| DevOps]]
+- [[fundamentals/Fundamentals|Fundamentals]]
+- [[Misc]]
