@@ -3,7 +3,7 @@
 Mainly Python and Bash programming.
 
 - Bash
-	- [[Cheat Sheet]]
+	- [[programming/bash/Cheat Sheet]]
 	- [[Brackets]]
 	- [[Command Substitution]]
 	- [[Traps]]
