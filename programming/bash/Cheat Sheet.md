@@ -23,6 +23,9 @@ By using `set -o pipefail` a pipeline will only return `0` if all commands succe
 
 ## Variables
 
+Bash supports powerful [[Parameter Expansions]], that can solve lots of tasks very elegantly.
+
+
 ### Prefer local variables
 ```bash
 func()
@@ -50,6 +53,7 @@ $ GLOBAL_B=1337
 
 
 ```
+
 
 ### Wrap vars in brackets `{}`
 Prefer to access variables via `${var_a}` instead of `$var_a`.

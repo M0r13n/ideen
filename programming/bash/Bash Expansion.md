@@ -3,7 +3,7 @@
 ## [@] vs [*]
 
 - `"${myarray[@]}"` leads to each element of the array being treated as a **separate** shell word
-- `"${myarray[**]}"` leads to a single shell-word with all the elements of the array separated by the first value of `IFS` - usually space
+- `"${myarray[*]}"` leads to a single shell-word with all the elements of the array separated by the first value of `IFS` - usually space
 
 
 ```bash
