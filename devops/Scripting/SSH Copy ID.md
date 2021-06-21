@@ -1,6 +1,6 @@
 # Install a SSH key on a server as an authorized key
 
-Before you can copy your **public** key to a remote host, you need to [[fundamentals/ssh/Fundamentals|generate a SSH keypair]].
+Before you can copy your **public** key to a remote host, you need to [[Fundamentals/ssh/Fundamentals|generate a SSH keypair]].
 
 The commands follows the following pattern:
 

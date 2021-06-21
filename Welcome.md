@@ -9,5 +9,7 @@ I try to split the information by topics.
 
 - [[Programming]]
 - [[DevOps| DevOps]]
-- [[fundamentals/Fundamentals|Fundamentals]]
+- [[Fundamentals/Fundamentals|Fundamentals]]
 - [[Misc]]
+- [[Biolo]]
+- [[Qoutes]]

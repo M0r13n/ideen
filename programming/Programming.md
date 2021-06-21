@@ -3,8 +3,12 @@
 Mainly Python and Bash programming.
 
 - Bash
-	- [[programming/bash/Cheat Sheet]]
+	- [[Cheat Sheet]]
 	- [[Brackets]]
 	- [[Command Substitution]]
 	- [[Traps]]
 	- [[Bash Completion]]
+
+- Architecture
+	- [[Basic Paradigms]]
+	- [[Changeability vs. Functionality]]

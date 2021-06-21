@@ -9,11 +9,15 @@ Basic information about the fundamentals of computer science.
 
 
 - Unix/Linux
+     * Commands
+		  * [[ls]] 
+	 * [[Open Ports]]
 	 * [[file descriptors]]
+	 * [[Processes]]
 	 * [[pipes]]
 	 * [[Helpful Commands]]
 	 * [[Creating Debian Packages]]
 
 - SSH
-	* [[fundamentals/ssh/Fundamentals]]
+	* [[Fundamentals/ssh/Fundamentals]]
 	* [[Tunnel | SSH Tunnel]]

@@ -1,0 +1,1 @@
+This is list of quotes, that I like and/or want to remember.
