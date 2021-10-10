@@ -11,5 +11,4 @@ I try to split the information by topics.
 - [[DevOps| DevOps]]
 - [[Fundamentals/Fundamentals|Fundamentals]]
 - [[Misc]]
-- [[Biolo]]
 - [[Qoutes]]

@@ -17,7 +17,12 @@ Basic information about the fundamentals of computer science.
 	 * [[pipes]]
 	 * [[Helpful Commands]]
 	 * [[Creating Debian Packages]]
+	 * [[Executable Locations]]
+	 * [[Linux Directory Structure]]
 
 - SSH
 	* [[Fundamentals/ssh/Fundamentals]]
 	* [[Tunnel | SSH Tunnel]]
+
+- Ubuntu
+	* [[AppImages]]
