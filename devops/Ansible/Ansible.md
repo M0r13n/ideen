@@ -73,6 +73,8 @@ Examples
 - **Install a package with pip**:
 	- `ansible docker -b -m pip -a "name=bottle state=present"`
 	- `ansible docker -b -m pip -a "name=bottle,pyais state=present"`
+- **Upgrade system packages with APT**:
+	- `ansible -m "apt" -a "update_cache=yes upgrade=yes" raspis -b`
 - **Call a (Python) program**
 	- `ansible docker -a "python3 -m bottle --version"`
 - **Manage groups and users**:
