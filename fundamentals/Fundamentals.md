@@ -21,6 +21,7 @@ Basic information about the fundamentals of computer science.
 	 * [[Creating Debian Packages]]
 	 * [[Executable Locations]]
 	 * [[Linux Directory Structure]]
+	 * [[Samba]]
 
 - SSH
 	* [[Fundamentals/ssh/Fundamentals]]
