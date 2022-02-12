@@ -1,5 +1,5 @@
 # SSH Tunnel
-SSH tunneling is a method of transporting arbitrary data over an encrypted [[Fundamentals/ssh/Fundamentals | SSH]] connection. As the name suggests SSH (Secure Shell) is an secure protocol. This basically means, that communication happens through an encrypted TCP connection. Therefore SSH is a standard for secure remote logins and file transfers over untrusted networks.
+SSH tunneling is a method of transporting arbitrary data over an encrypted [[fundamentals/protocols/ssh/Fundamentals | SSH]] connection. As the name suggests SSH (Secure Shell) is an secure protocol. This basically means, that communication happens through an encrypted TCP connection. Therefore SSH is a standard for secure remote logins and file transfers over untrusted networks.
 
 
 ## Usecases

@@ -1,0 +1,4 @@
+# UDP
+- stateless protocol <=> unconnected sockets
+
+https://blog.cloudflare.com/everything-you-ever-wanted-to-know-about-udp-sockets-but-were-afraid-to-ask-part-1/

@@ -6,9 +6,6 @@ Basic information about the fundamentals of computer science.
 ## TOC
 - Git
 	* [[Hooks]]
-
-* HTTP
-	* [[HTTP]]
 	
 - Unix/Linux
      * Commands
@@ -23,10 +20,12 @@ Basic information about the fundamentals of computer science.
 	 * [[Linux Directory Structure]]
 	 * [[Samba]]
 
-- SSH
-	* [[Fundamentals/ssh/Fundamentals]]
-	* [[Tunnel | SSH Tunnel]]
-
+* Protocols
+	* SSH
+		* [[fundamentals/protocols/ssh/Fundamentals]]
+		* [[Tunnel | SSH Tunnel]]
+	* [[ HTTP]]
+	- [[UDP]]
 - Ubuntu
 	* [[AppImages]]
 	* [[Function Key Behavior]]
