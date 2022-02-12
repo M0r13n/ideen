@@ -49,7 +49,7 @@
 - `openssl x509 -inform der -in <IN>.der -out <OUT>.pem`
 
 ###### **Convert PEM to DER** (Base65 ASCII to binary encoding)
-- `openssl x509 -inform der -in <IN>.der -out <OUT>.pem
+- `openssl x509 -inform der -in <IN>.der -out <OUT>.pem`
 
 ###### **Convert PEM to PKCS#7** (the .p7b file does not include the private key)
 - `openssl crl2pkcs7 -nocrl -certfile <IN>.pem -out <OUT>.p7b -certfile CACert.cer`
