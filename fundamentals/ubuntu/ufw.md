@@ -108,3 +108,29 @@ Both `deny` and `reject` block network traffic for a given service. But in case 
 ### any
 
 The parameters `PROTOCOL`, `ADDRESS` and `PORT` can be substituted with `any`. `any` is always true.
+
+
+## Playbook
+
+This playbook uses [[Ansible]].
+
+```yaml
+---
+
+- name: Enable ufw
+  ufw: state=enabled policy=allow
+
+- name: Disable default in
+  ufw: direction=incoming policy=deny
+
+- name: Allow ssh in
+  ufw: rule=limit name=OpenSSH
+
+# - name: 80 is open
+#   ufw: rule=allow port=80 proto=tcp
+
+# - name: 4949 (munin-node) is open to monitor(s)
+#   when: install_muninnode|default(True)
+#   ufw: rule=allow port=4949 proto=tcp from_ip={{ item }}
+#   with_items: "{{ muninnode_query_ips|default([]) }}"
+```
