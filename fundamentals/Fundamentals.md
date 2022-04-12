@@ -29,3 +29,4 @@ Basic information about the fundamentals of computer science.
 - Ubuntu
 	* [[AppImages]]
 	* [[Function Key Behavior]]
+	* [[ufw]]
