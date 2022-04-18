@@ -8,6 +8,6 @@ Information about DevOps stuff.
 - Manage Dependencies
  	* [[Conan]]
  - GitLab
-	 - [[Basics]]
+	 - [[devops/GitLab/Basics]]
 - Scripting
 	- [[SSH Copy ID]]

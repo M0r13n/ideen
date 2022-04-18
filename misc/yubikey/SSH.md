@@ -1,6 +1,6 @@
 # YubiKey & SSH
 
-See also [[fundamentals/protocols/ssh/Fundamentals]].
+See also [[fundamentals/protocols/network/ssh/Fundamentals]].
 
 Verify, that Ubuntu-18+ and OpenSSH_8.2 is installed:
 

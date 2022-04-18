@@ -22,7 +22,7 @@ Basic information about the fundamentals of computer science.
 
 * Protocols
 	* SSH
-		* [[fundamentals/protocols/ssh/Fundamentals]]
+		* [[fundamentals/protocols/network/ssh/Fundamentals]]
 		* [[Tunnel | SSH Tunnel]]
 	* [[ HTTP]]
 	- [[UDP]]
