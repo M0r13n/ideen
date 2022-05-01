@@ -20,12 +20,8 @@ Basic information about the fundamentals of computer science.
 	 * [[Linux Directory Structure]]
 	 * [[Samba]]
 
-* Protocols
-	* SSH
-		* [[fundamentals/protocols/network/ssh/Fundamentals]]
-		* [[Tunnel | SSH Tunnel]]
-	* [[ HTTP]]
-	- [[UDP]]
+* [[fundamentals/networking/Basics|Networking]]
+
 - Ubuntu
 	* [[AppImages]]
 	* [[Function Key Behavior]]
