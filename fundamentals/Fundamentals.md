@@ -21,8 +21,3 @@ Basic information about the fundamentals of computer science.
 	 * [[Samba]]
 
 * [[fundamentals/networking/Basics|Networking]]
-
-- Ubuntu
-	* [[AppImages]]
-	* [[Function Key Behavior]]
-	* [[ufw]]
