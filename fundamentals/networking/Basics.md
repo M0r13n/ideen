@@ -37,4 +37,4 @@ Server ---|network| Client
 	- a switch learns MAC addresses in hardware (ASIC)
 * Layer-1 devices: *dump* devices that operate on the electronic layer (forward electric signals)
 * Layer-2 devices: understand Ethernet frames and use MAC addresses to send frames
-* Layer-3 devices: route packets on the IP layer (one layer above Ethernet)
+* Layer-3 devices: route packets on the [[TCP-IP-Model|IP layer]] (one layer above Ethernet)

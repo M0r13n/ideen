@@ -20,7 +20,7 @@ HTTP is designed to allow intermediate network elements. In such networks other 
 * **HTTP/2**
 	* revision of both HTTP/1.0 and HTTP/1.1 with several improvements
 	* compressed headers (smaller, less traffic)
-	* used a single TCP/IP connection to transfer multiple requests and responses in parralel (stream multiplexing)
+	* used a single [[TCP-IP-Model|TCP/IP]] connection to transfer multiple requests and responses in parralel (stream multiplexing)
 	* adds a push capability (servers can push data to client, instead of clients asking for data periodically)
 	* HTTP messages are encapsulated into several frames (making them **non human readable**)
 * **HTTP/3**

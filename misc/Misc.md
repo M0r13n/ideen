@@ -2,9 +2,7 @@
 
 - Keyboards
 	- [[nodeadkeys]]
-- RFCs
-	- [[rfc1178| RFC 1178 - How to choose a good name for your computer]]
-* [[SSH]]
+* [[SSH| Yubikey SSH]]
 * [[RSA]]
 - Ubuntu
 	* [[AppImages]]
