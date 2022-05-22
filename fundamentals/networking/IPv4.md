@@ -3,14 +3,19 @@
 - Layer 3 or Network Layer protocol
 - used for host-to-host communication
 - serves two basic functions:
-	- **addressing**: transmit data to specific destinations
+	- **addressing**: transmit datagrams to specific destinations
 	- **fragmentation**: fragment and reassemble *large* datagrams  for transmission through *small packet* networks
 * **connectionless**
 	-> ==each packet is treated differently==
 	-> sessionless (unlike TCP)
-	-> each packet may take a different path
+	-> each datagram may take a different path
 * **best effort delivery**: No guarantee of packet delivery
 	-> this has to be done in layers above (e.g. TCP in the transport layer)
+* **unreliable**
+	-> datagrams may get dropped
+	-> datagrams may be delivered out of order
+	-> datagrams may be duplicated 
+	-> ==no error control for data, only a header checksum==
 
 ## IP Addressing
 
@@ -69,3 +74,24 @@ The following network "classes" are superseded by [[CIDR]].
 - ==allows for immediate communication of two devices if connected directly==
 - no manual configuration is required
 - **NOT routable**: only valid on the local link (broadcast domain)
+
+
+## IP Header
+
+```txt
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |Version|  IHL  |Type of Service|          Total Length         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |         Identification        |Flags|      Fragment Offset    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Time to Live |    Protocol   |         Header Checksum       |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                       Source Address                          |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Destination Address                        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Options                    |    Padding    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```

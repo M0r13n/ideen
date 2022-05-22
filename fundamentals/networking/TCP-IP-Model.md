@@ -29,7 +29,7 @@ Enables end-to-end communication between hosts.
 ### Network layer
 Cares about the routing of packets. Point-to-Point connections. Each nodes only cares about the next destination for the packet.
 
-- **PDU (Protocol data unit)**: packet
+- **PDU (Protocol data unit)**: datagram
 
 ### Data Link layer
 The data link layer defines the format of data on the network. Control of how data is handled by the physical media through MAC (Media Access Control) and detection of errors.
