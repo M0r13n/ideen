@@ -49,6 +49,13 @@ The following network "classes" are superseded by [[CIDR]].
 ###### Class C
 - /24 network -> first 24 bits set for network
 - range from 192 to 223 (`1100 0000` to `1101 1111`)
+-> `224.0.0.0` to `239.255.255.255`
+- [address blocks](https://en.wikipedia.org/wiki/Multicast_address#ipv4)
+
+###### Class D
+- /4 network -> first 4 bits set for network
+- 28 bits for hosts -> number of multicast groups
+- range from 224 to 239 (`1110 0000` to `1110 1111`)``
 
 ### Directed Broadcast Address
 - send data to **all** devices on a network
