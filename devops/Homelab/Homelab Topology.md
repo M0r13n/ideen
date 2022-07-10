@@ -43,7 +43,7 @@ The homelab consists of:
 │     eth1    eth3   eth5   eth7   eth9   eth11  eth13  eth15  eth17  eth19  eth21  eth23     ┌───┴───┐    ┌───────┐           │
 │                                                                                             │   T   │    │   T   │           │
 │     ┌───┐   ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐     └───────┘    └───────┘           │
-│     │ p │   │ p │  │ p │  │ p │  │ p │  │ p │  │ p │  │ p │  │ f │  │ f │  │ f │  │ f │        SFP1         SFP2             │
+│     │ p │   │ p │  │ p │  │ p │  │ p │  │ p │  │ p │  │ p │  │ f │  │ f │  │ f │  │ m │        SFP1         SFP2             │
 │     └───┘   └───┘  └───┘  └───┘  └───┘  └───┘  └───┘  └───┘  └───┘  └───┘  └───┘  └───┘                                      │
 │     eth2    eth4   eth6   eth8   eth10  eth12  eth14  eth16  eth18  eth20  eth22  eth24                                      │
 │                                                                                                                              │
@@ -72,7 +72,7 @@ Notes:
 #######################################
 
 # create one bridge, set VLAN mode off while we configure
-/interface bridge set protocol-mode=none vlan-filtering=no [find name=bridge]
+/interface bridge set vlan-filtering=no [find name=bridge]
 
 #######################################
 # -- Trunk Ports --
@@ -255,11 +255,11 @@ set bridge=bridge ingress-filtering=yes frame-types=admit-only-vlan-tagged [find
 # Cleanup Defaults
 #######################################
 # Remove default address 192.168.88.1
-/ip address 
-remove [find network=192.168.88.0]
+/ip address remove [find network=192.168.88.0]
 
 # Remove default DHCP server
 /ip pool remove [find name="default-dhcp"]
+/ip dhcp-server/ remove [find name="defconf"]
 
 # Deactivate unused IP services
 /ip service 
@@ -269,3 +269,86 @@ set [find] address=192.168.1.0/24,10.0.10.0/24
 ```
 
 Afterwards it might be a good idea to look at [hardening](./Mikrotik%20Security%20Manual.md).
+
+## CAPsMAN
+
+Router: 
+
+```bash
+
+/caps-man configuration add country=germany name=Config-2G security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm ssid=Baba-Netz channel.band=2ghz-b/g/n datapath.local-forwarding=yes datapath.vlan-id=10 datapath.vlan-mode=use-tag datapath.client-to-client-forwarding=yes 
+
+/caps-man provisioning  add action=create-dynamic-enabled master-configuration=Config-2G hw-supported-modes=gn
+
+/caps-man configuration add country=germany name=Config-5G security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm datapath.client-to-client-forwarding=yes ssid=Baba-Netz-5 channel.band=5ghz-n/ac datapath.local-forwarding=yes datapath.vlan-id=10 datapath.vlan-mode=use-tag
+
+/caps-man provisioning add action=create-dynamic-enabled master-configuration=Config-5G hw-supported-modes=an,ac
+
+/caps-man manager interface
+set [ find default=yes ] forbid=yes
+add disabled=no interface=BASE_VLAN
+
+# Improve roaming by kicking clients off of weak APs
+/caps-man access-list
+add action=reject interface=any signal-range=-120..-88
+
+```
+
+WAP
+
+```bash
+
+
+/interface bridge
+set vlan-filtering=no [find name=bridge]
+
+/interface vlan add interface=bridge name=BASE_VLAN vlan-id=99
+
+# VLAN Ingress
+/interface bridge port
+
+add bridge=bridge interface=ether1 trusted=yes frame-types=admit-only-vlan-tagged                  ingress-filtering=yes comment="trunk"
+
+#TODO
+# add bridge=BR1 interface=ether2 pvid=100    frame-types=admit-only-untagged-and-priority-tagged ingress-filtering=yes comment="Admin"
+
+
+# VLAN Egress
+/interface bridge vlan
+add bridge=bridge tagged=ether1,bridge  vlan-ids=99
+add bridge=bridge tagged=ether1         vlan-ids=10
+add bridge=bridge tagged=ether1         vlan-ids=20
+
+# Local Static IP
+/ip address add interface=BASE_VLAN address=192.168.1.4/24
+/ip route add distance=1 gateway=192.168.1.1
+/ip dns set servers=192.168.1.1
+
+# Turn on CAPsMAN mode
+/interface wireless cap
+set bridge=bridge discovery-interfaces=BASE_VLAN caps-man-addresses=192.168.1.1 enabled=yes interfaces=wlan1,wlan2,wlan3
+/interface wireless cap set certificate=none # TODO
+
+#######################################
+# Configuration Services / WAP Security
+#######################################
+# Ensure only visibility and availability from BASE_VLAN, the MGMT network
+/interface list add name=BASE
+/interface list member add interface=VLAN_100 list=BASE
+/ip neighbor discovery-settings set discover-interface-list=BASE
+/ip service disable telnet,ftp,www,api,api-ssl
+/tool mac-server mac-winbox set allowed-interface-list=BASE
+/tool mac-server set allowed-interface-list=BASE
+/tool bandwidth-server set enabled=no
+/ip proxy set enabled=no
+/ip socks set enabled=no
+/ip upnp set enabled=no
+/ip cloud set ddns-enabled=no update-time=no
+/ip ssh set strong-crypto=yes
+
+#######################################
+# Turn on VLAN mode
+#######################################
+/interface bridge set BR1 vlan-filtering=yes comment="vlan enabled"
+
+```
