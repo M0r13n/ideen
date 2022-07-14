@@ -24,14 +24,27 @@ exaggerated for personal setup in my humble opinion. But this depends on your th
 #### Force strong crypto
 `ip ssh set strong-crypto=yes`
 
+#### Disable unsed services
+`/ip service disable telnet,ftp,www`
+
+#### Disable the Dude
+`/dude set enabled=no`
+
+#### Disable the web proxy
+`/ip proxy set enabled=no`
+
+#### Disable Socks
+`/ip socks set enabled=no`
+
 #### Enable HTTPS
 It might be sensible to disable HTTP(S) access completely. But at least SSL should be set up.
 ```bash
 certificate add name=LocalCA common-name=LocalCA key-usage=key-cert-sign,crl-sign
 certificate sign LocalCA
-certificate add name=Webfig common-name=192.168.0.1
+certificate add name=Webfig common-name=<FQDN>
 certificate sign Webfig ca=LocalCA
 ip service set www-ssl certificate=Webfig disabled=no
 ip service set www disabled=yes
 ip service set api-ssl certificate=Webfig disabled=no
+ip service set api disabled=yes
 ```

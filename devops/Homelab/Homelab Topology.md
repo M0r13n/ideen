@@ -96,6 +96,7 @@ add bridge=bridge tagged=bridge,ether2,ether3,ether4,ether5,ether6,ether7,ether8
 /ip address add address=192.168.1.1/24 interface=BASE_VLAN
 
 # DNS server, set to cache for LAN
+# See ./Mikrotik DoH.md for DNS over HTTPS
 /ip dns set allow-remote-requests=yes servers="9.9.9.9"
 
 #######################################
@@ -153,7 +154,7 @@ remove [find dynamic=no]
 add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
 add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
 add chain=input action=accept protocol=icmp comment="defconf: accept ICMP"
-add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
+# add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
 add chain=input action=accept in-interface-list=VLAN comment="Allow VLAN to access DNS on this router" protocol=udp port=53
 add chain=input action=accept in-interface-list=MGM comment="Allow MGM VLANs full access to this router"
 add chain=input action=drop comment="Drop everything else"
@@ -294,52 +295,80 @@ add action=reject interface=any signal-range=-120..-88
 
 ```
 
-WAP
+### WAP
 
 ```bash
 
-
+# Temporarily disable VLAN filtering while configuring
 /interface bridge
 set vlan-filtering=no [find name=bridge]
 
-/interface vlan add interface=bridge name=BASE_VLAN vlan-id=99
+#######################################
+# VLAN Configuration
+#######################################
+# Remove default List
+/interface list remove [find name=LAN]
 
+# Add the Base VLAN with ID 99 (adjust to match Base VLAN)
+/interface vlan add interface=bridge name=BASE_VLAN vlan-id=99
+/interface vlan add interface=bridge name=PROD_VLAN vlan-id=10
+
+# Create two interface lists
+/interface list add name=MGM
+
+# Add all VLANs as members
+/interface list member
+
+add interface=BASE_VLAN list=MGM
+add interface=PROD_VLAN list=MGM
+
+#######################################
 # VLAN Ingress
+#######################################
 /interface bridge port
 
-add bridge=bridge interface=ether1 trusted=yes frame-types=admit-only-vlan-tagged                  ingress-filtering=yes comment="trunk"
+# Configure Ether1 as a Trunk port
+add bridge=bridge interface=ether1 trusted=yes frame-types=admit-only-vlan-tagged ingress-filtering=yes comment="trunk"
 
-#TODO
-# add bridge=BR1 interface=ether2 pvid=100    frame-types=admit-only-untagged-and-priority-tagged ingress-filtering=yes comment="Admin"
+# Configure Ether2 as a Prod port (VLAN-ID 10)
+add bridge=bridge interface=ether2 pvid=10 frame-types=admit-only-untagged-and-priority-tagged ingress-filtering=yes comment="prod"
 
 
+#######################################
 # VLAN Egress
+#######################################
 /interface bridge vlan
 add bridge=bridge tagged=ether1,bridge  vlan-ids=99
 add bridge=bridge tagged=ether1         vlan-ids=10
 add bridge=bridge tagged=ether1         vlan-ids=20
 
-# Local Static IP
+#######################################
+# IP configuration
+#######################################
+
+# Local Static IP on the Base VLAN
+# NOTE: Adjust the IP for each device!
 /ip address add interface=BASE_VLAN address=192.168.1.4/24
 /ip route add distance=1 gateway=192.168.1.1
 /ip dns set servers=192.168.1.1
 
-# Turn on CAPsMAN mode
+#######################################
+# CAPsMAN mode
+#######################################
 /interface wireless cap
 set bridge=bridge discovery-interfaces=BASE_VLAN caps-man-addresses=192.168.1.1 enabled=yes interfaces=wlan1,wlan2,wlan3
-/interface wireless cap set certificate=none # TODO
+set certificate=none
 
 #######################################
-# Configuration Services / WAP Security
+# Configuration Services
 #######################################
 # Ensure only visibility and availability from BASE_VLAN, the MGMT network
-/interface list add name=BASE
-/interface list member add interface=VLAN_100 list=BASE
-/ip neighbor discovery-settings set discover-interface-list=BASE
-/ip service disable telnet,ftp,www,api,api-ssl
-/tool mac-server mac-winbox set allowed-interface-list=BASE
-/tool mac-server set allowed-interface-list=BASE
+/tool mac-server mac-winbox set allowed-interface-list=MGM
+/tool mac-server set allowed-interface-list=MGM
 /tool bandwidth-server set enabled=no
+
+/ip neighbor discovery-settings set discover-interface-list=MGM
+/ip service disable telnet,ftp,www,api,api-ssl
 /ip proxy set enabled=no
 /ip socks set enabled=no
 /ip upnp set enabled=no
