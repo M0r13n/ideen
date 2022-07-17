@@ -276,20 +276,37 @@ Afterwards it might be a good idea to look at [hardening](./Mikrotik%20Security%
 Router: 
 
 ```bash
-
+#######################################
+# Production WLAN 2G
+#######################################
 /caps-man configuration add country=germany name=Config-2G security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm ssid=Baba-Netz channel.band=2ghz-b/g/n datapath.local-forwarding=yes datapath.vlan-id=10 datapath.vlan-mode=use-tag datapath.client-to-client-forwarding=yes 
 
 /caps-man provisioning  add action=create-dynamic-enabled master-configuration=Config-2G hw-supported-modes=gn
 
+#######################################
+# Production WLAN 5G
+#######################################
 /caps-man configuration add country=germany name=Config-5G security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm datapath.client-to-client-forwarding=yes ssid=Baba-Netz-5 channel.band=5ghz-n/ac datapath.local-forwarding=yes datapath.vlan-id=10 datapath.vlan-mode=use-tag
 
 /caps-man provisioning add action=create-dynamic-enabled master-configuration=Config-5G hw-supported-modes=an,ac
 
+#######################################
+# Family WLAN 2G
+#######################################
+/caps-man configuration add country=germany name="Family-2G" security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm ssid="Einbrecher hier rein!" channel.band=2ghz-b/g/n datapath.local-forwarding=yes datapath.vlan-id=20 datapath.vlan-mode=use-tag datapath.client-to-client-forwarding=yes 
+
+/caps-man provisioning set slave-configuration="Family-2G" [find name="Config-2G"]
+
+#######################################
+# Interface configuration
+#######################################
 /caps-man manager interface
 set [ find default=yes ] forbid=yes
 add disabled=no interface=BASE_VLAN
 
-# Improve roaming by kicking clients off of weak APs
+#######################################
+# Force roaming on weak signal
+#######################################
 /caps-man access-list
 add action=reject interface=any signal-range=-120..-88
 
