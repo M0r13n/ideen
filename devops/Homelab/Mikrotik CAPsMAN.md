@@ -4,7 +4,7 @@ I am assuming that your Chateau has loaded it's default config. If so:
 
 * bridge and lte interface are already configured correctly
 * also the DHCP server is already setup (192.168.88.2 - 192.168.88.254)
-* NAT is also already configured
+* [NAT](../../fundamentals/networking/NAT.md) is also already configured
 
 
 ## Setup CAPsMAN
