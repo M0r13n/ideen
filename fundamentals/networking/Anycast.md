@@ -20,3 +20,5 @@ It is therefore widely used by DNS oder streaming services.
 Stateful protocols require carefully crafted routes to prevent flapping.
 The TCP three-way handshake requires all packets to hit the same recipient.
 
+Because Anycast works on Layer3 it requires a layer 3 routing mechanism to work.
+Therefore, it can not be used for hosts on the same physical subnet, because such packets are delivered through Layer2.
