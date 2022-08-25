@@ -5,6 +5,15 @@ Prometheus is an Open-Source Monitoring and Altering system, that was developed 
 
 ## Architecture
 
+Prometheus uses a <mark>pull model</mark> to collect metrics:
+A Prometheus server periodically scrapes HTTP endpoints that expose metrics.
+These endpoints can either natively expose their own metrics or through any of the thousands of third party exporters.
+These exporters are used to allow Prometheus to collect metrics from every system.
+There is also the possibility to push metrics to Prometheus using the so called Agent mode.
+This can be useful when the targets are in a different subnet that is firewalled.
+
+<mark>The metrics are exposed via HTTP in a simple text format (ASCII).</mark>
+This is light weight, portable and human readable.
 
 ## Metrics
 There are **four** different metrics available in Prometheus:
@@ -13,6 +22,66 @@ There are **four** different metrics available in Prometheus:
 - **Gauge**: Variable values that fluctuate. Values are constantly increasing or decreasing. Typically seen when monitoring CPU usage, RAM usage or JVM heap size. 
 - **Histogram**: Summarizes statistical information. E.g. response time
 - **Summary**: Summary metrics are used to track the size of events, usually how long they take. Typically it consists of two counters + some gauges. 
+
+Fundamentally, every metric is a data point made of:
+
+- a name (e.g. `system_cpu_time`)
+- a timestamp when is was collected
+- a numeric value -> the measurement
+
+### Labels
+
+Additionally, each metric can have a set of labels.
+<mark>Labels are simple key-value pairs used to uniquely identify metrics.</mark>
+Any given combination of labels for the same metric name identifies a particular dimensional instantiation of that metric.
+So `current_humidity{room="bathroom"}` and `current_humidity{room="living_room"}` share the same metric name, but can be used as two distinct metrics for two different rooms.
+
+This is an example of a single metric:
+
+```txt
+# HELP current_humidity the current humidity percentage
+# TYPE current_humidity gauge
+current_humidity{room="bathroom"} 64.7
+```
+
+The keyword `# HELP` provides some kind of description about the metric.
+`# TYPE` defines the type of the metric, which can be any of the four basic types listed above.
+
+
+### Naming conventions
+
+Metrics should be named after the following pattern:
+
+`<PREFIX>_<NAME><SUFFIX>`
+
+where,
+
+- **PREFIX**:
+  - is a namespace for the given metric
+  - it is used to give the metric some context
+  - e.g. application name (mktxp) or service name (http)
+- **NAME**: 
+  - is a name for the metric
+  - tells us, what is measured
+  - e.g. cpu_seconds, humidity, request_duration
+- **SUFFIX**: 
+  - is used to describe the unit
+  - seconds, bytes, total, info
+  - [Base Units](https://prometheus.io/docs/practices/naming/#base-units)
+
+### Metadata
+
+So, if Prometheus only allows to store numeric metrics, how can I store meta data. It could be handy so store the software version, branch or commit. 
+
+To achieve this a single time series is exposed that always has the value 1.
+The information is then stored as labels.
+
+```python
+build_info = Gauge('prometheus_build_info', 'Build information', 
+    ['branch', 'goversion', 'revision', 'version'])
+build_info.labels('HEAD', 'go1.6.2', 
+    '16d70a8b6bd90f0ff793813405e84d5724a9ba65', '1.0.1').set(1)
+```
 
 ## PromQL
 Query language used by Prometheus. It is read only.
@@ -40,4 +109,3 @@ Get all DHCP leases for devices in the `192.168.0.0/16` network:
 `mikrotik_dhcp_leases_metrics{address=~"192.168.*"}`
 
 ### Functions and operators
-
