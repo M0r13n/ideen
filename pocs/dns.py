@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Based on RFC-1035
+# Source: https://datatracker.ietf.org/doc/html/rfc1035
 import dataclasses
 import itertools
 import socket
