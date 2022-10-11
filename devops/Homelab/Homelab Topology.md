@@ -263,7 +263,7 @@ set bridge=bridge ingress-filtering=yes frame-types=admit-only-vlan-tagged [find
 /ip dhcp-server/ remove [find name="defconf"]
 
 # Deactivate unused IP services
-/ip service 
+/ip service
 disable telnet,ftp
 set [find] address=192.168.1.0/24,10.0.10.0/24
 
@@ -273,29 +273,44 @@ Afterwards it might be a good idea to look at [hardening](./Mikrotik%20Security%
 
 ## CAPsMAN
 
-Router: 
+Router:
 
 ```bash
-#######################################
-# Production WLAN 2G
-#######################################
-/caps-man configuration add country=germany name=Config-2G security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm ssid=Baba-Netz channel.band=2ghz-b/g/n datapath.local-forwarding=yes datapath.vlan-id=10 datapath.vlan-mode=use-tag datapath.client-to-client-forwarding=yes 
+/caps-man configuration
 
-/caps-man provisioning  add action=create-dynamic-enabled master-configuration=Config-2G hw-supported-modes=gn
+# 2ghz network g/g/n
+add channel.band=2ghz-b/g/n .control-channel-width=20mhz .extension-channel=XX \
+    country=germany datapath.client-to-client-forwarding=yes \
+    .local-forwarding=yes .vlan-id=10 .vlan-mode=use-tag name=Config-2G \
+    security.authentication-types=wpa2-psk .encryption=aes-ccm \
+    .group-encryption=aes-ccm ssid="Tyrion WLANister"
 
-#######################################
-# Production WLAN 5G
-#######################################
-/caps-man configuration add country=germany name=Config-5G security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm datapath.client-to-client-forwarding=yes ssid=Baba-Netz-5 channel.band=5ghz-n/ac datapath.local-forwarding=yes datapath.vlan-id=10 datapath.vlan-mode=use-tag
+# 2 ghz guest network
+add channel.band=2ghz-b/g/n country=germany \
+    datapath.client-to-client-forwarding=yes .local-forwarding=yes .vlan-id=20 \
+    .vlan-mode=use-tag name=Family-2G security.authentication-types=wpa2-psk \
+    .encryption=aes-ccm .group-encryption=aes-ccm ssid="Einbrecher hier rein"
 
-/caps-man provisioning add action=create-dynamic-enabled master-configuration=Config-5G hw-supported-modes=an,ac
+# 5ghz network a/n/ac
+add channel.band=5ghz-a/n/ac .control-channel-width=20mhz .extension-channel=\
+    XXXX .skip-dfs-channels=no country=germany \
+    datapath.client-to-client-forwarding=yes .local-forwarding=yes .vlan-id=10 \
+    .vlan-mode=use-tag distance=indoors installation=indoor multicast-helper=\
+    full name=Config-5G-ac security.authentication-types=wpa2-psk .encryption=\
+    aes-ccm .group-encryption=aes-ccm ssid="Tyrion WLANister 5G"
 
-#######################################
-# Family WLAN 2G
-#######################################
-/caps-man configuration add country=germany name="Family-2G" security.authentication-types=wpa2-psk security.passphrase=top_secret security.encryption=aes-ccm security.group-encryption=aes-ccm ssid="Einbrecher hier rein!" channel.band=2ghz-b/g/n datapath.local-forwarding=yes datapath.vlan-id=20 datapath.vlan-mode=use-tag datapath.client-to-client-forwarding=yes 
+# 5ghz network a/n
+add channel.band=5ghz-a/n .control-channel-width=20mhz .extension-channel=XX country=germany \
+    datapath.client-to-client-forwarding=yes .local-forwarding=no .vlan-id=10 .vlan-mode=use-tag \
+    distance=indoors installation=indoor multicast-helper=full name=Config-5G-an \
+    security.authentication-types=wpa2-psk .encryption=aes-ccm .group-encryption=aes-ccm ssid=\
+    "Tyrion WLANister 5G"
 
-/caps-man provisioning set slave-configuration="Family-2G" [find name="Config-2G"]
+/caps-man provisioning
+add action=create-dynamic-enabled hw-supported-modes=gn master-configuration=Config-2G \
+    slave-configurations=Family-2G
+add action=create-dynamic-enabled hw-supported-modes=ac master-configuration=Config-5G-ac
+add action=create-dynamic-enabled hw-supported-modes=an master-configuration=Config-5G-an
 
 #######################################
 # Interface configuration
@@ -315,86 +330,80 @@ add action=reject interface=any signal-range=-120..-88
 ### WAP
 
 ```bash
-
-# Temporarily disable VLAN filtering while configuring
 /interface bridge
-set vlan-filtering=no [find name=bridge]
+add comment="vlan enabled" \
+    ingress-filtering=no name=bridgeLocal vlan-filtering=yes
 
-#######################################
-# VLAN Configuration
-#######################################
-# Remove default List
-/interface list remove [find name=LAN]
+/interface wireless
+set [ find default-name=wlan1 ] disabled=no ssid=MikroTik
+set [ find default-name=wlan2 ] disabled=no ssid=MikroTik
+set [ find default-name=wlan3 ] disabled=no ssid=MikroTik
 
-# Add the Base VLAN with ID 99 (adjust to match Base VLAN)
-/interface vlan add interface=bridge name=BASE_VLAN vlan-id=99
-/interface vlan add interface=bridge name=PROD_VLAN vlan-id=10
+/interface vlan
+add interface=bridgeLocal name=BASE_VLAN vlan-id=99
+add interface=bridgeLocal name=PROD_VLAN vlan-id=10
 
-# Create two interface lists
-/interface list add name=MGM
+/interface list
+add name=MGM
 
-# Add all VLANs as members
+/interface bridge port
+add bridge=bridgeLocal comment=defconf frame-types=admit-only-vlan-tagged \
+    interface=ether1 trusted=yes
+
+# Add the port to the bridge after configuring is done
+# add bridge=bridgeLocal comment=prod frame-types=admit-only-untagged-and-priority-tagged interface=ether2 pvid=10
+
+/ip neighbor discovery-settings
+set discover-interface-list=MGM
+
+/interface bridge vlan
+add bridge=bridgeLocal tagged=ether1,bridgeLocal vlan-ids=99
+add bridge=bridgeLocal tagged=ether1 vlan-ids=10
+add bridge=bridgeLocal tagged=ether1 vlan-ids=20
+
 /interface list member
-
 add interface=BASE_VLAN list=MGM
 add interface=PROD_VLAN list=MGM
 
-#######################################
-# VLAN Ingress
-#######################################
-/interface bridge port
-
-# Configure Ether1 as a Trunk port
-add bridge=bridge interface=ether1 trusted=yes frame-types=admit-only-vlan-tagged ingress-filtering=yes comment="trunk"
-
-# Configure Ether2 as a Prod port (VLAN-ID 10)
-add bridge=bridge interface=ether2 pvid=10 frame-types=admit-only-untagged-and-priority-tagged ingress-filtering=yes comment="prod"
-
-
-#######################################
-# VLAN Egress
-#######################################
-/interface bridge vlan
-add bridge=bridge tagged=ether1,bridge  vlan-ids=99
-add bridge=bridge tagged=ether1         vlan-ids=10
-add bridge=bridge tagged=ether1         vlan-ids=20
-
-#######################################
-# IP configuration
-#######################################
-
-# Local Static IP on the Base VLAN
-# NOTE: Adjust the IP for each device!
-/ip address add interface=BASE_VLAN address=192.168.1.4/24
-/ip route add distance=1 gateway=192.168.1.1
-/ip dns set servers=192.168.1.1
-
-#######################################
-# CAPsMAN mode
-#######################################
 /interface wireless cap
-set bridge=bridge discovery-interfaces=BASE_VLAN caps-man-addresses=192.168.1.1 enabled=yes interfaces=wlan1,wlan2,wlan3
-set certificate=none
+set bridge=bridgeLocal caps-man-addresses=192.168.1.1 discovery-interfaces=\
+    BASE_VLAN enabled=yes interfaces=wlan1,wlan2,wlan3
+/ip address
+add address=192.168.1.5/24 interface=BASE_VLAN network=192.168.1.0
 
-#######################################
-# Configuration Services
-#######################################
-# Ensure only visibility and availability from BASE_VLAN, the MGMT network
-/tool mac-server mac-winbox set allowed-interface-list=MGM
-/tool mac-server set allowed-interface-list=MGM
-/tool bandwidth-server set enabled=no
+/ip dns
+set servers=192.168.1.1
+/ip route
+add disabled=no dst-address=0.0.0.0/0 gateway=192.168.1.1
 
-/ip neighbor discovery-settings set discover-interface-list=MGM
-/ip service disable telnet,ftp,www,api,api-ssl
+/ip service
+set telnet disabled=yes
+set ftp disabled=yes
+set www disabled=yes
+set api disabled=yes
+set api-ssl disabled=yes
+/ip ssh
+set strong-crypto=yes
+/system clock
+set time-zone-name=Europe/Berlin
+/system identity
+set name=Elrond # Adjust to match the given device
+/system ntp client
+set mode=broadcast
+/system package update
+set channel=testing
+/tool bandwidth-server
+set enabled=no
+
+/tool mac-server
+set allowed-interface-list=MGM
+/tool mac-server mac-winbox
+set allowed-interface-list=MGM
+
 /ip proxy set enabled=no
 /ip socks set enabled=no
 /ip upnp set enabled=no
 /ip cloud set ddns-enabled=no update-time=no
-/ip ssh set strong-crypto=yes
 
-#######################################
-# Turn on VLAN mode
-#######################################
 /interface bridge set BR1 vlan-filtering=yes comment="vlan enabled"
-
 ```
