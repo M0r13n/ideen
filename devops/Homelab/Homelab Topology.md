@@ -299,18 +299,10 @@ add channel.band=5ghz-a/n/ac .control-channel-width=20mhz .extension-channel=\
     full name=Config-5G-ac security.authentication-types=wpa2-psk .encryption=\
     aes-ccm .group-encryption=aes-ccm ssid="Tyrion WLANister 5G"
 
-# 5ghz network a/n
-add channel.band=5ghz-a/n .control-channel-width=20mhz .extension-channel=XX country=germany \
-    datapath.client-to-client-forwarding=yes .local-forwarding=no .vlan-id=10 .vlan-mode=use-tag \
-    distance=indoors installation=indoor multicast-helper=full name=Config-5G-an \
-    security.authentication-types=wpa2-psk .encryption=aes-ccm .group-encryption=aes-ccm ssid=\
-    "Tyrion WLANister 5G"
-
 /caps-man provisioning
 add action=create-dynamic-enabled hw-supported-modes=gn master-configuration=Config-2G \
     slave-configurations=Family-2G
 add action=create-dynamic-enabled hw-supported-modes=ac master-configuration=Config-5G-ac
-add action=create-dynamic-enabled hw-supported-modes=an master-configuration=Config-5G-an
 
 #######################################
 # Interface configuration
@@ -330,15 +322,27 @@ add action=reject interface=any signal-range=-120..-88
 ### WAP
 
 ```bash
+
+# Create a bridge for all ethernet ports and wireless interfaces
 /interface bridge
 add comment="vlan enabled" \
     ingress-filtering=no name=bridgeLocal vlan-filtering=yes
 
+/interface bridge port
+add bridge=bridgeLocal comment=defconf frame-types=admit-only-vlan-tagged \
+interface=ether1 trusted=yes
+
+# Add the port to the bridge after configuring is done
+# add bridge=bridgeLocal comment=prod frame-types=admit-only-untagged-and-priority-tagged interface=ether2 pvid=10
+
+# Activate wireless interfaces
 /interface wireless
 set [ find default-name=wlan1 ] disabled=no ssid=MikroTik
 set [ find default-name=wlan2 ] disabled=no ssid=MikroTik
 set [ find default-name=wlan3 ] disabled=no ssid=MikroTik
 
+# Add both VLANs to the MGM interface list to allow access
+# to the device from 10.0.10.0/24 and 192.168.1.1/24
 /interface vlan
 add interface=bridgeLocal name=BASE_VLAN vlan-id=99
 add interface=bridgeLocal name=PROD_VLAN vlan-id=10
@@ -346,28 +350,26 @@ add interface=bridgeLocal name=PROD_VLAN vlan-id=10
 /interface list
 add name=MGM
 
-/interface bridge port
-add bridge=bridgeLocal comment=defconf frame-types=admit-only-vlan-tagged \
-    interface=ether1 trusted=yes
+/interface list member
+add interface=BASE_VLAN list=MGM
+add interface=PROD_VLAN list=MGM
 
-# Add the port to the bridge after configuring is done
-# add bridge=bridgeLocal comment=prod frame-types=admit-only-untagged-and-priority-tagged interface=ether2 pvid=10
-
+# Restrict IP discovery to prod VLANs
 /ip neighbor discovery-settings
 set discover-interface-list=MGM
 
+# Tell the bridge about all three VLANs
 /interface bridge vlan
 add bridge=bridgeLocal tagged=ether1,bridgeLocal vlan-ids=99
 add bridge=bridgeLocal tagged=ether1 vlan-ids=10
 add bridge=bridgeLocal tagged=ether1 vlan-ids=20
 
-/interface list member
-add interface=BASE_VLAN list=MGM
-add interface=PROD_VLAN list=MGM
-
+# The the CAPsMAN client where to listen
 /interface wireless cap
 set bridge=bridgeLocal caps-man-addresses=192.168.1.1 discovery-interfaces=\
     BASE_VLAN enabled=yes interfaces=wlan1,wlan2,wlan3
+
+# Configure a static IP address
 /ip address
 add address=192.168.1.5/24 interface=BASE_VLAN network=192.168.1.0
 
@@ -389,7 +391,9 @@ set time-zone-name=Europe/Berlin
 /system identity
 set name=Elrond # Adjust to match the given device
 /system ntp client
-set mode=broadcast
+set enabled=yes
+/system ntp client servers
+add address="time.cloudflare.com"
 /system package update
 set channel=testing
 /tool bandwidth-server
@@ -405,5 +409,5 @@ set allowed-interface-list=MGM
 /ip upnp set enabled=no
 /ip cloud set ddns-enabled=no update-time=no
 
-/interface bridge set BR1 vlan-filtering=yes comment="vlan enabled"
+# /interface bridge set bridge vlan-filtering=yes comment="vlan enabled"
 ```
