@@ -1,9 +1,10 @@
 # CISCO TCP/IP model
+
 | TCP/IP Layer | Example(s)|
 | --- | --- |
 | Application | HTTP, FTP, DHCP, Telnet, TLS|
 | Transport | TCP, UDP |
-| Network | IPv4, IPv6|
+| Network | IPv4, IPv6 |
 | Data Link | Ethernet |
 | Physical | Copper or optical fibre cables, 2,4 ghz network |
 
