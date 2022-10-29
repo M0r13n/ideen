@@ -5,7 +5,7 @@ The homelab consists of:
 - a Mikrotik RB3011 Routerboard
 - a Mikrotik CRS326 Cloud Router Switch
 - a Mikrotik RB260GS PoE Switch
-- multiple Ubiquiti Edgerouter X
+
 
 ## Topology
 
@@ -57,6 +57,7 @@ The homelab consists of:
 | PROD | 10      | 10.0.10.0\24    |
 | FAM  | 20      | 10.0.20.0\24    |
 | MGM  | 99      | 192.168.1.1\24  |
+| TNG  | 07      | dynamic         |
 
 ## Configuration (CLI)
 
@@ -65,6 +66,7 @@ The following command should be applied to a RB3011 in **default configuration!*
 Notes:
 
 - the default bridge is named `bridge` and not something like `bridge`
+- my ISP requires authentication over PPPoE on VLAN 7 (tagged)
 
 ```bash
 #######################################
@@ -246,6 +248,19 @@ set bridge=bridge ingress-filtering=yes frame-types=admit-only-vlan-tagged [find
 /ip neighbor discovery-settings set discover-interface-list=MGM
 /tool mac-server mac-winbox set allowed-interface-list=MGM
 /tool mac-server set allowed-interface-list=MGM
+
+#######################################
+# PPPoE settings
+#######################################
+# Tag all traffic on ether1 with the VLAN-ID 7
+/interface/vlan add vlan-id=7 interface=ether1 name=TNG_VLAN
+
+/interface pppoe-client
+add add-default-route=yes disabled=no interface=TNG_VLAN name=TNG use-peer-dns=yes user="foobar"
+
+/interface list member
+add comment=defconf interface=ether1 list=WAN
+add comment="PPPoE TNG" interface=TNG list=WAN
 
 #######################################
 # Turn on VLAN mode
