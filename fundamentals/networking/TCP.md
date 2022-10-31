@@ -172,6 +172,24 @@ This means that there are many segments in transit at any given time.
 
 ## Congestion Control
 
+## Flaws
+
+### We Need a Replacement for TCP in the Datacenter
+
+A [paper from John Ousterhout from the Stanford University](https://web.stanford.edu/~ouster/cgi-bin/papers/replaceTcp.pdf) states some flaws and weaknesses of TCP in the context of data centers.
+
+#### Stream orientation
+
+The data model of TCP is a continuos stream of bytes. This is a problem, because data center applications exchange many discrete messages. When such messages are serialized into a TCP stream, TCP has no knowledge about message boundaries. The application reading from such a stream could receive a partial message or multiple parts of different messages. In order to distinct different messages additional effort is required which decreases the overall efficiency.
+
+Natively, it is not possible for multiple threads to read from the same stream. This is because there is no guarantee that a single `read()` operations yields a complete message. If multiple threads read from the same socket, it is possible that different threads receive different parts of the same message.
+
+Large messages could also induce head-of-line blocking. Because messages must be received in order, short messages can be delayed behind large messages. 
+
+#### Connection orientation
+
+TCP requires lon-lived connections state for **each peer that the applications communicates with**. This is unwanted in data centers, because applications may have hundreds of thousands of them, resulting in additional overhead. 
+
 
 ## Resources
 
