@@ -7,8 +7,8 @@ This is personal project and I do **NOT** strive for completion or correctness. 
 ## Table of contents
 I try to split the information by topics. 
 
-- [[Programming]]
-- [[DevOps| DevOps]]
-- [[Fundamentals/Fundamentals|Fundamentals]]
-- [[Misc]]
-- [[Qoutes]]
+- [Programming](./programming/Programming.md)
+- [DevOps](./devops/DevOps.md)
+- [Fundamentals](./fundamentals/Fundamentals.md)
+- [Misc](misc/Misc.md)
+- [Philosophy](./philosophy)
