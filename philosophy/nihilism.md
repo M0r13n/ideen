@@ -19,3 +19,23 @@ Es wird verneint:
 - Moral und Werte
 
 ## English
+
+
+
+> rejects generally accepted or fundamental aspects of human existence such as objective truth, knowledge, morality, values or meaning.
+
+Different nihilist positions negate various norms and values, like
+
+- human values
+- meaning of life
+- knowledge
+- objective truths
+- moral
+
+. 
+
+Nietzsche wrote:
+
+> A nihilist is a man who judges of the world as it is that it ought *not* to be, and of the world as it ought to be that it does not exist.  According to this view, our existence (action, suffering, willing,  feeling) has no meaning: the pathos of 'in vain' is the nihilists'  pathos – at the same time, as pathos, an inconsistency on the part of  the nihilists.
+
+A good metaphor for a nihilist is Rick Sanchez from Rick & Morty. He is a severely alcohol dependent genius who sees little to no point in surviving. He also acts detached from any moral concepts. It also shows that basic human values such as love, trust and honesty seem to have no value for him.
