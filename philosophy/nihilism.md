@@ -32,8 +32,6 @@ Different nihilist positions negate various norms and values, like
 - objective truths
 - moral
 
-. 
-
 Nietzsche wrote:
 
 > A nihilist is a man who judges of the world as it is that it ought *not* to be, and of the world as it ought to be that it does not exist.  According to this view, our existence (action, suffering, willing,  feeling) has no meaning: the pathos of 'in vain' is the nihilists'  pathos – at the same time, as pathos, an inconsistency on the part of  the nihilists.
