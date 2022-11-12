@@ -256,7 +256,7 @@ set bridge=bridge ingress-filtering=yes frame-types=admit-only-vlan-tagged [find
 /interface/vlan add vlan-id=7 interface=ether1 name=TNG_VLAN
 
 /interface pppoe-client
-add add-default-route=yes disabled=no interface=TNG_VLAN name=TNG use-peer-dns=yes user="foobar"
+add add-default-route=yes  allow=pap,chap,mschap2 disabled=no interface=TNG_VLAN name=TNG use-peer-dns=yes user="foobar"
 
 /interface list member
 add comment=defconf interface=ether1 list=WAN

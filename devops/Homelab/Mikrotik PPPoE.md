@@ -9,7 +9,7 @@ add vlan-id=7 interface=ether1 name=vlan07
 
 # PPPoE client configuration
 /interface pppoe-client
-add add-default-route=yes disabled=no interface=vlan07 name=TNG use-peer-dns=yes user="foobar"
+add add-default-route=yes  allow=pap,chap,mschap2 disabled=no interface=vlan07 name=TNG use-peer-dns=yes user="foobar"
 
 # Add both interfaces to the WAN list
 # This is needed if you have configured the firewall with interface lists
