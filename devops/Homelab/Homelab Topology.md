@@ -156,7 +156,6 @@ remove [find dynamic=no]
 add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
 add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
 add chain=input action=accept protocol=icmp comment="defconf: accept ICMP"
-# add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
 add chain=input action=accept in-interface-list=VLAN comment="Allow VLAN to access DNS on this router" protocol=udp port=53
 add chain=input action=accept in-interface-list=MGM comment="Allow MGM VLANs full access to this router"
 add chain=input action=drop comment="Drop everything else"
@@ -286,110 +285,66 @@ set [find] address=192.168.1.0/24,10.0.10.0/24
 
 Afterwards it might be a good idea to look at [hardening](./Mikrotik%20Security%20Manual.md).
 
-## CAPsMAN
 
-Router:
-
-```bash
-/caps-man configuration
-
-# 2ghz network g/g/n
-add channel.band=2ghz-b/g/n .control-channel-width=20mhz .extension-channel=XX \
-    country=germany datapath.client-to-client-forwarding=yes \
-    .local-forwarding=yes .vlan-id=10 .vlan-mode=use-tag name=Config-2G \
-    security.authentication-types=wpa2-psk .encryption=aes-ccm \
-    .group-encryption=aes-ccm ssid="Tyrion WLANister"
-
-# 2 ghz guest network
-add channel.band=2ghz-b/g/n country=germany \
-    datapath.client-to-client-forwarding=yes .local-forwarding=yes .vlan-id=20 \
-    .vlan-mode=use-tag name=Family-2G security.authentication-types=wpa2-psk \
-    .encryption=aes-ccm .group-encryption=aes-ccm ssid="Einbrecher hier rein"
-
-# 5ghz network a/n/ac
-add channel.band=5ghz-a/n/ac .control-channel-width=20mhz .extension-channel=\
-    XXXX .skip-dfs-channels=no country=germany \
-    datapath.client-to-client-forwarding=yes .local-forwarding=yes .vlan-id=10 \
-    .vlan-mode=use-tag distance=indoors installation=indoor multicast-helper=\
-    full name=Config-5G-ac security.authentication-types=wpa2-psk .encryption=\
-    aes-ccm .group-encryption=aes-ccm ssid="Tyrion WLANister 5G"
-
-/caps-man provisioning
-add action=create-dynamic-enabled hw-supported-modes=gn master-configuration=Config-2G \
-    slave-configurations=Family-2G
-add action=create-dynamic-enabled hw-supported-modes=ac master-configuration=Config-5G-ac
-
-#######################################
-# Interface configuration
-#######################################
-/caps-man manager interface
-set [ find default=yes ] forbid=yes
-add disabled=no interface=BASE_VLAN
-
-#######################################
-# Force roaming on weak signal
-#######################################
-/caps-man access-list
-add action=reject interface=any signal-range=-120..-88
-
-```
 
 ### WAP
 
 ```bash
-
-# Create a bridge for all ethernet ports and wireless interfaces
+# dec/11/2022 12:29:35 by RouterOS 7.6
 /interface bridge
-add comment="vlan enabled" \
-    ingress-filtering=no name=bridgeLocal vlan-filtering=yes
+add  auto-mac=no comment="vlan enabled" ingress-filtering=no name=bridgeLocal vlan-filtering=yes
 
-/interface bridge port
-add bridge=bridgeLocal comment=defconf frame-types=admit-only-vlan-tagged \
-interface=ether1 trusted=yes
-
-# Add the port to the bridge after configuring is done
-# add bridge=bridgeLocal comment=prod frame-types=admit-only-untagged-and-priority-tagged interface=ether2 pvid=10
-
-# Activate wireless interfaces
-/interface wireless
-set [ find default-name=wlan1 ] disabled=no ssid=MikroTik
-set [ find default-name=wlan2 ] disabled=no ssid=MikroTik
-set [ find default-name=wlan3 ] disabled=no ssid=MikroTik
-
-# Add both VLANs to the MGM interface list to allow access
-# to the device from 10.0.10.0/24 and 192.168.1.1/24
 /interface vlan
 add interface=bridgeLocal name=BASE_VLAN vlan-id=99
 add interface=bridgeLocal name=PROD_VLAN vlan-id=10
+add interface=bridgeLocal name=FAMILY_VLAN vlan-id=20
 
 /interface list
 add name=MGM
 
-/interface list member
-add interface=BASE_VLAN list=MGM
-add interface=PROD_VLAN list=MGM
+/interface wifiwave2 security
+add authentication-types=wpa2-psk,wpa3-psk disable-pmkid=yes encryption=ccmp,gcmp,ccmp-256,gcmp-256 group-encryption=ccmp name=secdef
+add authentication-types=wpa2-psk,wpa3-psk disable-pmkid=yes encryption=ccmp,gcmp,ccmp-256,gcmp-256 name=secguest
 
-# Restrict IP discovery to prod VLANs
+/interface wifiwave2 configuration
+add chains=0,1,2,3 channel.skip-dfs-channels=10min-cac country=Germany mode=ap name=4x5ghz security=secdef ssid="Make Tyrion great again" tx-chains=0,1,2,3
+add chains=0,1 channel.skip-dfs-channels=10min-cac country=Germany mode=ap name=2x5ghz security=secdef ssid="Tyrion WLANister 5G" tx-chains=0,1
+add chains=0,1 country=Germany mode=ap name=2x2ghz security=secdef ssid="Tyrion WLANister" tx-chains=0,1
+add mode=ap name=2x2ghz-quest security=secguest ssid="Einbrecher hier rein"
+
+/interface wifiwave2
+set [ find default-name=wifi1 ] configuration=2x2ghz configuration.mode=ap disabled=no
+set [ find default-name=wifi2 ] configuration=2x5ghz configuration.mode=ap disabled=no
+set [ find default-name=wifi3 ] configuration=4x5ghz configuration.mode=ap disabled=no
+add configuration=2x2ghz-quest configuration.mode=ap disabled=no master-interface=wifi1 name=wifi4
+
+/interface bridge port
+add bridge=bridgeLocal comment=defconf frame-types=admit-only-vlan-tagged interface=ether1 trusted=yes
+add bridge=bridgeLocal comment=prod frame-types=admit-only-untagged-and-priority-tagged interface=ether2 pvid=10
+add bridge=bridgeLocal frame-types=admit-only-untagged-and-priority-tagged interface=wifi3 pvid=10
+add bridge=bridgeLocal frame-types=admit-only-untagged-and-priority-tagged interface=wifi2 pvid=10
+add bridge=bridgeLocal frame-types=admit-only-untagged-and-priority-tagged interface=wifi1 pvid=10
+add bridge=bridgeLocal frame-types=admit-only-untagged-and-priority-tagged interface=wifi4 pvid=20
+
 /ip neighbor discovery-settings
 set discover-interface-list=MGM
 
-# Tell the bridge about all three VLANs
 /interface bridge vlan
 add bridge=bridgeLocal tagged=ether1,bridgeLocal vlan-ids=99
 add bridge=bridgeLocal tagged=ether1 vlan-ids=10
 add bridge=bridgeLocal tagged=ether1 vlan-ids=20
 
-# The the CAPsMAN client where to listen
-/interface wireless cap
-set bridge=bridgeLocal caps-man-addresses=192.168.1.1 discovery-interfaces=\
-    BASE_VLAN enabled=yes interfaces=wlan1,wlan2,wlan3
+/interface list member
+add interface=BASE_VLAN list=MGM
+add interface=PROD_VLAN list=MGM
+add interface=FAMILY_VLAN list=MGM
 
-# Configure a static IP address
-/ip address
-add address=192.168.1.5/24 interface=BASE_VLAN network=192.168.1.0
+/ip dhcp-client
+add comment=defconf interface=bridgeLocal
 
 /ip dns
 set servers=192.168.1.1
+
 /ip route
 add disabled=no dst-address=0.0.0.0/0 gateway=192.168.1.1
 
@@ -399,30 +354,21 @@ set ftp disabled=yes
 set www disabled=yes
 set api disabled=yes
 set api-ssl disabled=yes
+
 /ip ssh
 set strong-crypto=yes
 /system clock
 set time-zone-name=Europe/Berlin
 /system identity
-set name=Elrond # Adjust to match the given device
+set name=Eowen
 /system ntp client
 set enabled=yes
 /system ntp client servers
-add address="time.cloudflare.com"
-/system package update
-set channel=testing
+add address=time.cloudflare.com
 /tool bandwidth-server
 set enabled=no
-
 /tool mac-server
 set allowed-interface-list=MGM
 /tool mac-server mac-winbox
 set allowed-interface-list=MGM
-
-/ip proxy set enabled=no
-/ip socks set enabled=no
-/ip upnp set enabled=no
-/ip cloud set ddns-enabled=no update-time=no
-
-# /interface bridge set bridge vlan-filtering=yes comment="vlan enabled"
 ```

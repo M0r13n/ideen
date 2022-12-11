@@ -55,3 +55,20 @@ The checksum was removed in IPv6 because it is mostly redundant. All link layer 
 ## Firewall Gotchas
 
 IPv6 uses ICMPv6 for the address resolution. ICMPv6 is based on the IPv6 protocol itself. Therefore, these packets can not be filtered by the firewall. Refer to RFC4890 for Firewall Recommendations.
+
+## IPv6 Addressing
+
+IPv6 support three types of addresses:
+
+- **Unicast**: identify a single interface
+- **Anycast**: indentify a set of interfaces in such a way that a packet sent to an anycast address is delivered to a member of the set
+- **Multicast**: indentify a group of interfaces in such a way that a packet sent to a multicast address is delivered to all interfaces in the group
+
+| Prefix    | Comment                                  | Example/IPv4 Equivalent      |
+| --------- | ---------------------------------------- | ---------------------------- |
+| ::/128    | unspecified bind address                 | 0.0.0.0                      |
+| ::1/128   | loopback interface                       | 127.0.0.1                    |
+| ::ffff/96 | IPv4 mapped                              | ::ffff:192.0.2.1             |
+| fc00::/7  | Unique local address (RFC 4193)          | RFC1918 address (10.0.0.0/8) |
+| fe80::/10 | Link local Address (54 bits are often 0) | 169.254.0.0/16               |
+
