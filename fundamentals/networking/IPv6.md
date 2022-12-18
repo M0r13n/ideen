@@ -10,6 +10,9 @@ Modern operating systems support that a host has an IPv4 and IPv6 address simult
 - the host chooses the type of connection for **each new outgoing connection**
 - RFC6723 says that IPv6 is preferred over IPv4
 - sometimes hosts deviate from this and prefer the faster connection
+- /32 is the minimum prefix allocation
+- /48 is the minimum prefix size that will be routed globally via BGB
+- /64 is the common size for one subnet
 
 ## IPv4 vs IPv6
 
@@ -61,14 +64,83 @@ IPv6 uses ICMPv6 for the address resolution. ICMPv6 is based on the IPv6 protoco
 IPv6 support three types of addresses:
 
 - **Unicast**: identify a single interface
-- **Anycast**: indentify a set of interfaces in such a way that a packet sent to an anycast address is delivered to a member of the set
+- **Anycast**: identify a set of interfaces in such a way that a packet sent to an anycast address is delivered to a member of the set
 - **Multicast**: indentify a group of interfaces in such a way that a packet sent to a multicast address is delivered to all interfaces in the group
 
 | Prefix    | Comment                                  | Example/IPv4 Equivalent      |
 | --------- | ---------------------------------------- | ---------------------------- |
 | ::/128    | unspecified bind address                 | 0.0.0.0                      |
 | ::1/128   | loopback interface                       | 127.0.0.1                    |
-| ::ffff/96 | IPv4 mapped                              | ::ffff:192.0.2.1             |
+| ::ffff/96 | IPv4 mapped                              | ::ffff:192.0.2.1 |
 | fc00::/7  | Unique local address (RFC 4193)          | RFC1918 address (10.0.0.0/8) |
-| fe80::/10 | Link local Address (54 bits are often 0) | 169.254.0.0/16               |
+| fe80::/10 | Link local Address (54 bits are often 0) | 169.254.0.0/16 |
 
+
+### Address structure
+
+![IPv6 address structure taken from APNIC](../../img/apnic_ipv6_img.png)
+
+- /32 is the typical allocation for a network operator
+- /48 is the minimum prefix length that will be globally routed via BGP
+- a subnet is typically a /64
+
+### Unique local unicast addresses (ULA)
+
+- globally unique prefix (with high probability of uniqueness).
+- well-known prefix to allow for easy filtering at site
+boundaries.
+- allow sites to be combined or privately interconnected without
+creating any address conflicts or requiring renumbering of
+interfaces that use these prefixes.
+- internet Service Provider independent and can be used for
+communications inside of a site without having any permanent or
+intermittent Internet connectivity.
+- if accidentally leaked outside of a site via routing or DNS,
+there is no conflict with any other addresses.
+- in practice, applications may treat these addresses like global
+scoped addresses.
+- comparable (but not the same) to IPv4 RFC1918 addresses
+- defined in [RFC 4193](https://tools.ietf.org/html/rfc4193)
+- 7 bits prefix
+- 8th bit is 1 as for all local addresses
+- 40 bits for global ID
+	- is globally unique
+	- pseudo-random
+	- Global ID isn’t assured to be unique, but chances are high that it is
+- 16 bits for subnet ID
+- 64 bits for interface ID
+- the L bit is always 1, because the global ID is not guaranteed to be globally unique
+	- all valid ULAs thus start with `fd00::/8`
+	- 7 bits prefix + 1 bit L bit 
+
+## Best Practice for IPv6 prefix assignment
+
+Some best practises based on recommendations from [RIPE](https://www.ripe.net/publications/docs/ripe-690) and [APNIC](https://blog.apnic.net/2020/06/01/why-is-a-48-the-recommended-minimum-prefix-size-for-routing/).
+
+### Generic recommendations
+
+- **IPv4 != IPv6**. There is not risk of exhausting the IPv6 address space any time soon. Therefore, it is considered good practice to assign each end-user site a short prefix, so that they can have as many subnets (/64) as they want.
+- is it **strongly discouraged** to assign prefixes longer than /56 as an operator to endusers
+	- the gold standard is a /48 for each end user
+	- /56 is still okay
+	- /64 is only viable for cell phones
+- RIPE recommends a persistent prefix unless there are **privacy concerns** in which case a non-persistent prefix can be used.
+
+### Prefix assignment options
+
+#### /48 for everybody
+
+- there is enough address space to assign a /48 to every human on earth for the next 480 years (or so)
+- offers more flexibility for end-users and their addressing schemes
+- `2001:db8::/40` then becomes:
+    - `2001:db8:aaaa::/48`
+    - `2001:db8:aaab::/48`
+    - `2001:db8:aaac::/48`
+    - `...`
+    - `2001:db8:ffff::/48`
+    - the enduser can then use `2001:db8:aaaa:XXXX::/48` to make its own addressing plan
+
+#### longer than /56
+
+- **strongly discouraged**
+- /64 or longer does not conform to the IPv6 standard
