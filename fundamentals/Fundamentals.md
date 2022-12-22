@@ -1,12 +1,15 @@
 # Fundamentals
+
 Basic information about the fundamentals of computer science. 
 
-*How do you want to be good programmer, if you do not understand the basics?*
+*In order to become a decent developer, I need to understand the fundamentals*
 
 ## TOC
 - Git
 	* [[Hooks]]
-	
+	* [[Git Object Types]]
+	* [[Rare useful commands]]
+	* [[Sign Commits]]
 - Unix/Linux
      * Commands
 		  * [[ls]] 
@@ -19,14 +22,21 @@ Basic information about the fundamentals of computer science.
 	 * [[Executable Locations]]
 	 * [[Linux Directory Structure]]
 	 * [[Samba]]
-
 * [[fundamentals/networking/Basics|Networking]]
 	*  [[fundamentals/networking/Basics|Basics]]
 	* [[ARP]]
+	* [[Anycast]]
 	* [[CIDR]]
+	* [[HTTP]]
+	* [[ICMPv6]]
 	* [[IPv4]]
+	* [[IPv6]]
+	* [[Multicast]]
 	* [[NAT]]
 	* [[Samba]]
+	* [[Subnetting]]
+	* [[TCP]]
 	* [[TCP-IP-Model]]
 	* [[UDP]]
+	* [[VLAN]]
 	* [[Socket Options]]

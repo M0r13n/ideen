@@ -3,7 +3,7 @@
 [ufw](https://launchpad.net/ufw) is a terminal application that serves as a frontend for iptables. There is a **unofficial** graphical interface for ufw: gufw
 
 ## Important
-By default ufw blocks **all incoming** connections unless explicitly  configured otherwise. In case you are accessing a remote machine through [[SSH]] you might block yourself from the system. In this case physical access to the machine is **mandatory**. Therefore, make sure to always configure ufw properly **before** enabling it.
+By default ufw blocks **all incoming** connections unless explicitly  configured otherwise. In case you are accessing a remote machine through [[misc/yubikey/SSH]] you might block yourself from the system. In this case physical access to the machine is **mandatory**. Therefore, make sure to always configure ufw properly **before** enabling it.
 
 ## Installation and basic configuration
 

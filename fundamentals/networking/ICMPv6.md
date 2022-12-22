@@ -1,5 +1,3 @@
-# ICMPv6
-
 ICMPv6 is a dedicated protocol that is heavily used by IPv6. Its main purpose is ti provide state information and error messages for IP, TCP and UDP. 
 
 ## RA - Router Advertisement

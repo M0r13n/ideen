@@ -1,4 +1,3 @@
-# HTTP
 
 * application layer protocal (OSI layer 7)
 * built on top of TCP (transport layer), altough HTTP/3 is based on Googles QUIC protocol

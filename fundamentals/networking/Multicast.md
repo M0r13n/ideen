@@ -1,5 +1,3 @@
-# Multicast Overview
-
 - [[Multicast#Use cases|Use cases]]
 - [[Multicast#Loop prevention|Loop prevention]]
 - [[Multicast#Addressing|Addressing]]

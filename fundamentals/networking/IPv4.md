@@ -1,5 +1,3 @@
-# IPv4
-
 - Layer 3 or Network Layer protocol
 - used for host-to-host communication
 - serves two basic functions:

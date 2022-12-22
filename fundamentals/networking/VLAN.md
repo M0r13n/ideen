@@ -1,5 +1,3 @@
-# VLAN
-
 ## Motivation
 
 - reduce the number of hosts in a broadcast domain

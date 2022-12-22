@@ -1,6 +1,5 @@
-# Anycast
 
-Anycast works like Unicast in the sense that a **single** packet is delivered to a **single** destination host.
+**Anycast** works like Unicast in the sense that a **single** packet is delivered to a **single** destination host.
 The crucial difference is that there are multiple physical machines sharing the same destination address.
 The packet is delivered to the host that is **closest to the sender** (shortest route).
 

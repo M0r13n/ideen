@@ -1,5 +1,3 @@
-# IP subnetting
-
 The following rules can be used to calculate the specific address:
 
 - **Network/Subnet address**

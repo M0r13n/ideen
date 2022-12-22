@@ -1,8 +1,5 @@
-# Address Resolution Protocol(ARP)
 
-
-
-ARP is a Layer-2 protocol used to translate IP addresses into Ethernet addresses (MAC). Once the Ethernet address is known the packet can be sent to the  correct network interface (e.g. switch port). ARP is only used for IPv4. IPv6 uses the Neighbor Discovery Protocol (NDP). ARP *sits* between the IP and Ethernet layers, as it is needed to lookup the destination Ethernet address.
+The **Address Resolution Protocol(ARP)** is a Layer-2 protocol used to translate IP addresses into Ethernet addresses (MAC). Once the Ethernet address is known the packet can be sent to the  correct network interface (e.g. switch port). ARP is only used for IPv4. IPv6 uses the Neighbor Discovery Protocol (NDP). ARP *sits* between the IP and Ethernet layers, as it is needed to lookup the destination Ethernet address.
 
 ## ARP table
 The result of the ARP request is stored inside the ARP table in memory. This table contains a row for each network device. Each row has two columns:

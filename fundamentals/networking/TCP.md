@@ -1,5 +1,3 @@
-# TCP
-
 - defined in [RFC 793](https://www.ietf.org/rfc/rfc793.txt
 - the Internet Protocol (IP) is used on the transport layer
 - designed to highly reliable host-to-host packet exchange

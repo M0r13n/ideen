@@ -1,5 +1,3 @@
-# IPv6
-
 ## Dual Stack
 
 Modern operating systems support that a host has an IPv4 and IPv6 address simultaneously. This is used to make the transition from IPv4 to IPv6 easier, because services can be migrated one after another. The only downside is the added complexity. Some things need to be configured twice (routing, firewalls, etc.).

@@ -1,5 +1,3 @@
-# UDP
-
 - defined in [RFC 768](https://www.ietf.org/rfc/rfc768.txt)
 - the Internet Protocol (IP) is used on the transport layer
 - designed to deliver messages with a minimum of protocol mechanisms

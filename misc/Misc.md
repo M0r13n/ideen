@@ -2,7 +2,7 @@
 
 - Keyboards
 	- [[nodeadkeys]]
-* [[SSH| Yubikey SSH]]
+* [[misc/yubikey/SSH| Yubikey SSH]]
 * [[RSA]]
 - Ubuntu
 	* [[AppImages]]

@@ -1,6 +1,4 @@
-# Samba
-
-Samba is an implementation of the SMB (Server Message Block)/CIFS (Common Internet File System) protocol. It can be used to share folders and printers in a network across Windows **and** Unix machines. SMB and CIFS are mostly used synonymously.
+**Samba** is an implementation of the SMB (Server Message Block)/CIFS (Common Internet File System) protocol. It can be used to share folders and printers in a network across Windows **and** Unix machines. SMB and CIFS are mostly used synonymously.
 
 ## Samba Client Configuration (Linux)
 

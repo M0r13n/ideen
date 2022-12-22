@@ -1,5 +1,3 @@
-# Network Address Translation (NAT)
-
 - allows multiple hosts to share a single public IP behind a gateway
 - operates on **Layer 3**
 - **Source-NAT**: changes the source IP in the packet header and optionally the source port
