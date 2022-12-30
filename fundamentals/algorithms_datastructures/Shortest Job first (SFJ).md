@@ -24,6 +24,7 @@ class Job:
 class Solution(object):
     def getOrder(self, tasks):
         # Order tasks after their arrival time & processing time
+        # O(N * log(N))
         sorted_tasks = sorted((Job(x[0], x[1][0], x[1][1]) for x in enumerate(tasks)), key=lambda x: (x.arr_time, x.duration) )
 
         solution = []
@@ -31,12 +32,13 @@ class Solution(object):
         cur_time = 0
         i = 0
 
+		# O(N * log(N))
         while len(solution) < len(sorted_tasks):
             # Check which jobs can be scheduled for execution
             while i < len(sorted_tasks):
                 job = sorted_tasks[i]
                 if job.arr_time <= cur_time:
-                    heappush(job_queue, job)
+                    heappush(job_queue, job)  # <= O(log(N))
                     i += 1
                 else:
                     break
@@ -47,7 +49,7 @@ class Solution(object):
                 continue
 
             # Select the shortest job from all scheduled jobs
-            job = heappop(job_queue) 
+            job = heappop(job_queue)  # <= O(log(N))
             solution.append(job.index)
             cur_time += job.duration
                 
