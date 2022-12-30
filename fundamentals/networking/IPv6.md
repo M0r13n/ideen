@@ -24,7 +24,7 @@ Modern operating systems support that a host has an IPv4 and IPv6 address simult
 |  Network MAsk  |            yes             |       uses prefix instead       |
 | MAC resolution |            ARP             |  Multicast Neighbor Discovery   |
 
-### How does IPv6 auto configuration work?
+### SLAAC
 
 IPv6 uses SLAAC (Stateless Address Autoconfiguration) for stateless configuration of IPv6 addresses on a given interface. It is possible to retrieve a link locale and a global IPv6 address. 
 
