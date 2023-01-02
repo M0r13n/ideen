@@ -1,9 +1,9 @@
 {
 	"nodes":[
 		{"id":"da857bcf1c1d19bf","x":-52,"y":-403,"width":116,"height":50,"color":"6","type":"text","text":"# DNS"},
-		{"id":"b555a554627453cf","x":-574,"y":-265,"width":580,"height":190,"color":"4","type":"text","text":"## Definition\n\n- hierarchical distributed naming system\n- translates domain names to IP addresses\n\t- domain names are easily memorized\n- associates various other information with domains names"},
 		{"id":"ff7cd468f7be4cf2","x":120,"y":-265,"width":712,"height":687,"color":"5","type":"file","file":"fundamentals/networking/DNS-Records.md"},
-		{"id":"b0e48d1ad6f7261f","x":-574,"y":-34,"width":580,"height":456,"color":"2","type":"file","file":"fundamentals/networking/Dig.md"}
+		{"id":"b555a554627453cf","x":-574,"y":-265,"width":580,"height":236,"color":"4","type":"text","text":"## Definition\n\n- hierarchical distributed naming system\n- translates domain names to IP addresses\n\t- domain names are easily memorized\n- associates various other information with domains names\n- each request has a transaction id. The transaction id is required, because DNS uses UDP which is a stateless protocol. Thanks to this identifier, the client can match the received answer with the question that it sent."},
+		{"id":"b0e48d1ad6f7261f","x":-574,"y":0,"width":580,"height":456,"color":"2","type":"file","file":"fundamentals/networking/Dig.md"}
 	],
 	"edges":[
 		{"id":"68e57f7b3466e775","fromNode":"da857bcf1c1d19bf","fromSide":"left","toNode":"b555a554627453cf","toSide":"top"},
