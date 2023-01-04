@@ -59,7 +59,7 @@ The homelab consists of:
 | MGM  | 99      | 192.168.1.1\24  |
 | TNG  | 07      | dynamic         |
 
-## Configuration (CLI)
+## RB3011
 
 The following command should be applied to a RB3011 in **default configuration!**
 
@@ -285,9 +285,121 @@ set [find] address=192.168.1.0/24,10.0.10.0/24
 
 Afterwards it might be a good idea to look at [hardening](./Mikrotik%20Security%20Manual.md).
 
+## CRS326
 
+```bash
+# jan/04/2023 12:53:51 by RouterOS 7.6
+# software id = JLXN-PEZN
+#
+# model = CRS326-24G-2S+
+# serial number = XXXXXXXXXXX
 
-### WAP
+# Create new bridge with VLAN filtering
+/interface bridge add admin-mac=DC:2C:6E:D0:90:A5 auto-mac=no comment=defconf ingress-filtering=no name=bridge vlan-filtering=yes
+
+# Auto negotiation fails in my case -> force it to 1 Gbit/s
+/interface ethernet
+set [ find default-name=sfp-sfpplus1 ] auto-negotiation=no
+
+# Define the three VLANS
+/interface vlan
+add interface=bridge name=BASE_VLAN vlan-id=99
+add interface=bridge name=FAMILY_VLAN vlan-id=20
+add interface=bridge name=PROD_VLAN vlan-id=10
+
+# Configure VLAN lists for easier management
+/interface list
+add name=MGM
+
+/interface list member
+add interface=BASE_VLAN list=MGM
+add interface=PROD_VLAN list=MGM
+
+# Add all ports to the bridge.
+# All ports expect the SFP port are configured as access ports.
+# The SFP port is configured as a trunk.
+/interface bridge port
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether1 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether2 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether3 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether4 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether5 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether6 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether7 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether8 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether9 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether10 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether11 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether12 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether13 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether14 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether15 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether16 pvid=10
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether17 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether18 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether19 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether20 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether21 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether22 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether23 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-untagged-and-priority-tagged interface=ether24 pvid=20
+add bridge=bridge comment=defconf frame-types=admit-only-vlan-tagged interface=sfp-sfpplus1
+add bridge=bridge comment=defconf disabled=yes interface=sfp-sfpplus2
+
+# Only listen on the trusted network
+/ip neighbor discovery-settings
+set discover-interface-list=MGM
+
+# Tell the switch to tag all frames going into SFP1
+/interface bridge vlan
+add bridge=bridge tagged=sfp-sfpplus1,bridge vlan-ids=99
+add bridge=bridge tagged=sfp-sfpplus1 vlan-ids=10
+add bridge=bridge tagged=sfp-sfpplus1 vlan-ids=20
+
+# Configure a static IP address
+/ip address
+add address=192.168.1.2/24 interface=BASE_VLAN network=192.168.1.0
+/ip dns
+set servers=192.168.1.1
+/ip route
+add disabled=no dst-address=0.0.0.0/0 gateway=192.168.1.1 routing-table=main suppress-hw-offload=no
+
+# Disable unused services
+/ip service
+set telnet address=192.168.1.0/24,10.0.10.0/24 disabled=yes
+set ftp address=192.168.1.0/24,10.0.10.0/24 disabled=yes
+set www address=192.168.1.0/24,10.0.10.0/24 disabled=yes
+set ssh address=192.168.1.0/24,10.0.10.0/24
+set www-ssl address=192.168.1.0/24,10.0.10.0/24
+set api address=192.168.1.0/24,10.0.10.0/24 disabled=yes
+set winbox address=192.168.1.0/24,10.0.10.0/24
+set api-ssl address=192.168.1.0/24,10.0.10.0/24
+
+# Misc stuff for security and time zone
+/ip ssh
+set strong-crypto=yes
+/system clock
+set time-zone-name=Europe/Berlin
+/system identity
+set name=Boromir
+/system ntp client
+set enabled=yes
+/system ntp client servers
+add address=time.cloudflare.com
+/system routerboard settings
+set boot-os=router-os
+/system swos
+set address-acquisition-mode=static allow-from-ports=p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26 identity=Boromir static-ip-address=\
+    192.168.1.2
+/tool bandwidth-server
+set enabled=no
+/tool mac-server
+set allowed-interface-list=MGM
+/tool mac-server mac-winbox
+set allowed-interface-list=MGM
+```
+
+## WAP
 
 ```bash
 # dec/11/2022 12:29:35 by RouterOS 7.6
