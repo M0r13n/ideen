@@ -19,6 +19,10 @@ apparmor module is loaded.
 	- `aa-status`
 	- `aa-enforce`
 	- ...
+- profiles are based on **default deny**
+	- <mark>the profile list what is allowed and everything else is denied</mark>
+	- explicit denials are possible but only to document known bad behaviors
+
 
 ## Docker
 
@@ -31,4 +35,20 @@ apparmor module is loaded.
 ## Raspi
 
 - starting with v5.10 of the Linux Kernel AppArmor is  supported by Raspian
-- to enable add `lsm=apparmor` to `/boot/cmdline.txt`
+- to enable add `lsm=apparmor`  to `/boot/cmdline.txt`
+
+## Python
+
+- possible to run interpreted programs/languages
+- requires a nested profile
+```txt
+#include <tunables/global>
+
+profile /home/leon/projects/foo/foo flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    #include <abstractions/python>
+
+    /usr/bin/python3.10 ix,
+    @{HOME}/projects/foo/** r,
+}
+```
