@@ -1,0 +1,28 @@
+---
+- hosts: neofetch_hosts
+
+  pre_tasks:
+  - name: Load configuration
+    ansible.builtin.include_vars: "{{ item }}"
+    loop:
+      - config.yml
+
+  tasks:
+    - name: Install neofetch
+      ansible.builtin.package:
+        name: neofetch
+        state: present
+
+    - name: Create neofetch configuration file.
+      ansible.builtin.template:
+        src: templates/config.conf.j2
+        dest: "{{ ansible_env.HOME }}/.config/neofetch/config.conf"
+        mode: '0640'
+      become: false
+
+    - name: Create neofetch message of the day
+      ansible.builtin.template:
+        src: templates/01-neofetch.j2
+        dest: "/etc/update-motd.d/01-neofetch"
+        mode: '0755'
+      become: true
