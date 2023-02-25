@@ -10,8 +10,8 @@
 ### Terms
 - **Node**: a system that is controlled by Ansible
 - **Inventory File**: a file that contains information about server Ansible controls (default: `/etc/ansible/hosts` )
-- **Playbook**: a file containing a set of tasks to be executed on the remote server
-- **Role**: a collection of playbooks and files that are relevant to a goal (e.g. installing Docker)
+- **Playbook**: a file containing a set of tasks or roles to be executed on the remote server(s)
+- **Role**: a collection of tasks and files that are relevant to achieve a goal (e.g. installing Docker)
 - **Play**: a complete Ansible run
 
 ### Basic Commands

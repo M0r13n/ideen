@@ -1,0 +1,25 @@
+- philosophical study of being and related concepts such as existence, becoming and reality
+- addresses questions like:
+	- *how are entities grouped into categories?*
+	- *which entities exist on the most fundamental level*
+- commonly proposed system of categories:
+	- substances (particulars that are able to exist all by themselves)
+	- properties (characteristic of an object)
+	- relations (ways in which things stand to each other)
+	- states of affairs (*Sachverhalt*, description of the actual world )
+	- events
+- **particularity and universality**
+	- universals are features that can be exemplified by various different particulars
+	- *For example, a tomato and a strawberry are two particulars that exemplify the universal redness*
+- **abstractness and concreteness**
+	- concrete objects include plants, human beings and planets 
+	- things like numbers, sets and propositions are abstract objects
+	- distinctions can be made on differences between:
+		- existence inside or outside space-time
+		- having causes and effects or not
+		- having contingent or necessary existence
+- **possibility and necessity**
+	- a possible world is a complete way how things could have been
+	- actual world is one possible world among others: things could have been different from what they actually are
+	- if something is true on all possible worlds, it is necessary
+	- 
