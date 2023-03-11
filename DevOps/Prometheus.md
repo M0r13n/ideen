@@ -109,3 +109,10 @@ Get all DHCP leases for devices in the `192.168.0.0/16` network:
 `mikrotik_dhcp_leases_metrics{address=~"192.168.*"}`
 
 ### Functions and operators
+
+## Retention Period
+
+- defaults to 15 days
+- any time series data older than that is deleted
+- can be customized by adding to following parameter when calling Prometheus:
+	- `--storage.tsdb.retention.time=1y"`
