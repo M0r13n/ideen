@@ -110,9 +110,49 @@ Get all DHCP leases for devices in the `192.168.0.0/16` network:
 
 ### Functions and operators
 
-## Retention Period
+###  Retention Period
 
 - defaults to 15 days
 - any time series data older than that is deleted
 - can be customized by adding to following parameter when calling Prometheus:
 	- `--storage.tsdb.retention.time=1y"`
+
+## Terms
+
+### Time Series
+
+- series of **(timestamp, value)** tuples
+- sorted by timestamp
+- timestamps use millisecond precision
+- each time series is **uniquely identified** by its name and a set of labels:
+	- `temperature`
+	- `temperature{city=”NY”}`
+	- `temperature{city=”SF”}`
+	- `temperature{city=”SF”, unit=”Celsius”}`
+	- `humidity`
+
+### Data Point
+
+- a single **(timestamp, value)** tuple is called a **data point**
+
+### Cardinality
+
+- number of unique time series stored in Prometheus
+- defined by the sum of all distinct time series:
+	- count of distinctt values for one label
+	- the number of labels
+	- the number of distinct metric names
+		- `temperature`
+		- `temperature{city=”NY”}`
+		- `temperature{city=”SF”, unit=”Fahrenheit”}`
+		- `temperature{city=”SF”, unit=”Celsius”}`
+		- `C = 2 x 2 = 4`
+			- two different labels (city, unit) with two different values each (NY/SF and Fahrenheit/Celsius)
+
+### Ingestion Rate
+
+- per second number of data points inserted into Prometheus
+- depends on:
+	- total number of scraped targets
+	- scrape interval
+	- `ingestion_rate = num_targets * metrics_per_target / scrape_interval`
