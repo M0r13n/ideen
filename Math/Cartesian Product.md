@@ -1,4 +1,5 @@
 
+
 - $A \times B = \{(a,b) | a \in A \wedge  b \in B  \}$
 - all possible pairs $(a,b)$ where $a \in A$ and $b \in B$
 - let $A:= \{A, B, C\}$ and $B:= \{1, 2, 3\}$
