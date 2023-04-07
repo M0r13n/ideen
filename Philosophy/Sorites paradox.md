@@ -1,0 +1,3 @@
+a paradox that results from **vague principles**. The typical example involves a heap of sand. It assumes that after removing a **piece of sand from the head the heap is still a heap**. The paradox arises from the repeating of this process until only a single **grain of sand remains**. Is it still a heap? If not - when did it change from a heap to non-heap?
+
+More formally it can be formulated as follows: Let there be a heap of sand $H$ with $|H|=n$. If $n$ grains make it a heap and it is still a heap with $n-1$ grains. Then this process can be repeated for $(n-1)-1$ and $((n-1)-1)-1$ and so on until $n=(((n-1)-1)...)-1=1$. Therefore, a single grain of sand would still be heap.
