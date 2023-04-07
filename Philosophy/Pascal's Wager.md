@@ -1,0 +1,1 @@
+a philosophical argument that human beings wager with their lives whether god exists or not. It argues that a rational person should live/behave as though god exists and seek to believe in god. If god does not exist, such a person as only a finite loss, whereas if god exists it is going to receive near infinite gains.
