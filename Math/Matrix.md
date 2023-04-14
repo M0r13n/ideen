@@ -12,7 +12,7 @@ A =
 \end{pmatrix}
 \end{equation*}
 $$
-- is a "three by two matrix" or a matrix of dimension $2 \times 3$
+- is a "three by two matrix" or a matrix of dimension $3 \times 2$
 - a matrix with _m_ rows and _n_ columns is called an $m \times n$ matrix, or _m_-by-_n_ matrix
 - boxed brackets and rounded parentheses typically mean the same
 - $a_{i,j}$ refers to the entry $i<=m$ and $j<=n$ at the i-th row and j-th colum
@@ -120,6 +120,33 @@ A =
 9 & 12 & 15\\
 24 & 33 & 42\\
 39 & 54 & 69
+\end{pmatrix}
+\end{equation*}
+$$
+
+## Hadamard Product
+For two matrices A and B of the same dimensions $m \times n$ the Hadamard product is defined as:
+
+$A \odot B = A_{i,j} \cdot B_{i,j}$
+
+$$
+\begin{equation*}
+A = 
+\begin{pmatrix}
+1 & 2 \\
+4 & 5 \\
+7 & 8 
+\end{pmatrix}
+\begin{pmatrix}
+9 & 8 \\
+7 & 6 \\
+5 & 4 
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 \cdot 9 & 2 \cdot 8 \\
+4 \cdot 7 & 5 \cdot 6 \\
+7 \cdot 5 & 8 \cdot 4 \\
 \end{pmatrix}
 \end{equation*}
 $$
