@@ -1,0 +1,1 @@
+A simple model that should perform reasonably well and that is easy to implement. This baseline can then be used to test new ideas by making sure that they always perform better than the original baseline.
