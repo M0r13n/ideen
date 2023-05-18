@@ -1,0 +1,6 @@
+- [Northcote Parkinson](https://en.wikipedia.org/wiki/C._Northcote_Parkinson)'s argument that ==an organization commonly gives disproportionate weight to trivial issues==
+- also knows as ==bike-shedding==
+	- Parkinson provides the example of the construction of a nuclear power plant
+	- the responsible persons spent the majority of their time discussing the details of a bike shed
+	- by doing so they ignored the the plan itself - which is much more important
+- common example for endless discussions in which people implement their own proposal just ==to shown that they are knowledgeable and want to demonstrate commitment==

@@ -82,6 +82,12 @@ Examples
 
 Roles are collections of re-usable and shareable steps of execution. Unlike Playbooks roles itself are not executable. Instead, roles refine a set of tasks and additional files to configure a host for a certain *role*. Thus, the name role. Playbooks are more or less a mapping of roles and hosts. They are often used to combine multiple roles together to fulfill a specific purpose.
 
+### How does it work?
+
+Ansible uses the **Ansiballz** framwork. This framework contains boilerplate code such as argument parsing, formatting of return values as JSON. Parts of the module can be imported using `import from ansible.module_utils`.
+
+When a module gets execute, Ansiballz constructs a zipfile – which includes the module file, files in `ansible/module_utils` that are imported by the module, and some boilerplate to pass in the module’s parameters. The zipfile is then Base64 encoded and wrapped in a small Python script which decodes the Base64 encoding and places the zipfile into a temp directory on the managed node. It then extracts just the Ansible module script from the zip file and places that in the temporary directory as well. Then it sets the PYTHONPATH to find Python modules inside of the zip file and imports the Ansible module as the special name, `__main__`. Importing it as `__main__` causes Python to think that it is executing a script rather than simply importing a module. This lets Ansible run both the wrapper script and the module code in a single copy of Python on the remote machine.
+
 ### Sample Playbooks
 
 #### Regenerate SSH Host keys
