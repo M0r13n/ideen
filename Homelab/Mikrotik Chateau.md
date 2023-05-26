@@ -4,7 +4,7 @@ This is my Chateau config for my flat:
 
 ```
 /interface bridge
-add admin-mac=2C:C8:1B:59:54:D4 auto-mac=no comment=defconf name=bridge
+add auto-mac=yes comment=defconf name=bridge
 /interface lte
 # A newer version of modem firmware is available!
 set [ find default-name=lte1 ] allow-roaming=no band="" disabled=yes
