@@ -1,4 +1,3 @@
-# RFC 1178 - Choosing a Name for Your Computer
 
 You find the original RFC [here](https://tools.ietf.org/html/rfc1178).
 

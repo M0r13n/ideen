@@ -22,7 +22,7 @@
 	* like street, number and city point to specific house in a city
 * **globally unique** for every device on the internet
 	* there are exceptions:
-		* [[1918|RFC1918]]
+		* [[1918 - Address Allocation for Private Internets|RFC1918]]
 		* loopback and broadcast addresses
 * 32 bits -> 2 pow 32 address -> 4294967296 possible addresses
 * four octets: 123.123.123.123
