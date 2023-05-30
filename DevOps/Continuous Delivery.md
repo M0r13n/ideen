@@ -1,0 +1,1 @@
+The concept of **continuous delivery** is based on the **deployment pipeline** to ensure that code and infrastructure are always in deployable state and that all code checked into the main branch (also named trunk) can be safely deployed into production.
