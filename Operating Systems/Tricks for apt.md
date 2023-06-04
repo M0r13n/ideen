@@ -1,0 +1,4 @@
+- install apt non interactively: `DEBIAN_FRONTEND=noninteractive apt-get -y`
+- search for packages: `apt search firefox`
+- inspect package `apt show firefox`
+- clean up: `apt clean`

@@ -1,0 +1,2 @@
+- best: `lsblk`
+- good: `fdisk -l` or `parted -l`
