@@ -1,0 +1,1 @@
+`du -sh .` will print the size of the current directory in a human readable manner.
