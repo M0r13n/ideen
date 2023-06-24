@@ -5,15 +5,33 @@ Prometheus is an Open-Source Monitoring and Altering system, that was developed 
 
 ## Architecture
 
-Prometheus uses a <mark>pull model</mark> to collect metrics:
-A Prometheus server periodically scrapes HTTP endpoints that expose metrics.
-These endpoints can either natively expose their own metrics or through any of the thousands of third party exporters.
-These exporters are used to allow Prometheus to collect metrics from every system.
-There is also the possibility to push metrics to Prometheus using the so called Agent mode.
-This can be useful when the targets are in a different subnet that is firewalled.
+1. **Pull Mechanism (Polling)**: In the pull mechanism, Prometheus acts as a central server that periodically scrapes metrics data from the targets it monitors. It sends HTTP GET requests to specific endpoints exposed by the targets, typically `/metrics`, to retrieve metric data. This approach is commonly used when Prometheus is monitoring systems that expose metrics in a compatible format.
 
-<mark>The metrics are exposed via HTTP in a simple text format (ASCII).</mark>
-This is light weight, portable and human readable.
+   The pull mechanism offers several advantages:
+
+   - Centralized Control: Prometheus has full control over the scraping process and can collect metrics from multiple targets.
+   - Flexible Configuration: Administrators can define scrape intervals, specify relabeling rules, and configure various other options for each target.
+   - Automatic Service Discovery: Prometheus can automatically discover targets to scrape using service discovery mechanisms like DNS-based discovery or integrations with cloud platforms.
+
+2. **Push Mechanism**: The push mechanism allows applications or services to actively send metrics data to Prometheus. Applications need to expose an HTTP endpoint to which they send metrics data in a specific format (e.g., Prometheus exposition format). Prometheus provides libraries and client integrations (e.g., client libraries for popular programming languages) that facilitate pushing metrics.
+
+   The push mechanism offers the following benefits:
+
+   - Reduced Scrape Latency: Instead of relying on periodic scraping, metrics are sent to Prometheus in near real-time, reducing latency.
+   - Immediate Event-Driven Metrics: Applications can push metrics based on events or triggers, allowing more fine-grained control over when and what metrics are collected.
+   - Better Control over Resource Usage: Applications have control over when and how frequently metrics are pushed, helping manage resource usage effectively.
+
+   
+
+## Scrape Interval & Exporter services
+
+   1. **Scrape Interval**: The scrape interval is a configuration setting in Prometheus that determines how frequently Prometheus scrapes the `/metrics` endpoint of each target to collect metrics. It specifies the time interval between successive scrapes of a particular target. For example, if the scrape interval is set to 15 seconds, Prometheus will make a GET request to the target's `/metrics` endpoint every 15 seconds to collect fresh metric data.
+   2. **Exporter Service**: On each target, you typically have an exporter service or an agent that is responsible for collecting the metrics from the various components or applications running on that target. The exporter service collects the relevant metrics and exposes them at the `/metrics` endpoint in a format that Prometheus can understand (e.g., Prometheus exposition format). Examples of exporters include the Node Exporter, the Apache Exporter, or the MySQL Exporter.
+   3. **Scraping Process**: When Prometheus performs a scrape, it sends an HTTP GET request to the `/metrics` endpoint of the target. The target, which is running the exporter service, responds to this request by collecting the metrics from the relevant components or applications running on that target and providing them in the response. Prometheus then parses the response, extracts the metrics, and stores them in its time-series database for further processing and querying
+
+:warning: <mark>Metrics should only be pulled from the application when Prometheus scrapes them, exporters should not perform scrapes based on their own timers. That is, all scrapes should be synchronous.  </mark>  
+
+:warning: <mark>If a metric is particularly expensive to retrieve, i.e. takes more than a minute, it is acceptable to cache it. This should be noted in the `HELP` string.   </mark>  
 
 ## Metrics
 There are **four** different metrics available in Prometheus:
