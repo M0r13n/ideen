@@ -1,0 +1,8 @@
+{
+  "spellcheck": true,
+  "alwaysUpdateLinks": true,
+  "promptDelete": false,
+  "useMarkdownLinks": true,
+  "attachmentFolderPath": "assets",
+  "showInlineTitle": false
+}

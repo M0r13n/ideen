@@ -36,7 +36,7 @@ $$
 1 & 4 \\
 2 & 5 \\
 3 & 6 
-\end{pmatrix}
+Matrix
 =
 \begin{pmatrix}
 2 & 6 \\

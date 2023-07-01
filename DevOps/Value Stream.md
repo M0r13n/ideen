@@ -1,3 +1,4 @@
+# Value Stream
 > the sequence of activities an organization undertakes to deliver upon a customer request
 
 > the sequence of activities required to design, test and produce and deliver a good or service to a customer including the dual flows of information and material

@@ -1,3 +1,4 @@
+# Cartesian Product
 
 
 - $A \times B = \{(a,b) | a \in A \wedge  b \in B  \}$

@@ -1,1 +1,2 @@
+# Hormesis
 Hormesis is a characteristic of many biological processes, namely a biphasic or triphasic response to exposure to increasing amounts of a substance or condition. Within the hormetic zone, the biological response to low exposures to toxins and other stressors is generally favorable. These stressors make the body more resilient to stress over time.

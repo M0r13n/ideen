@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "aa60df4963808555",
+    "type": "split",
+    "children": [
+      {
+        "id": "7e6569ae0803fd0c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a6c4c1c7017899ca",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DevOps/Organizational Learning.md",
+                "mode": "preview",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2f34f0692d316a5e",
+    "type": "split",
+    "children": [
+      {
+        "id": "6aa07d4d1d85c6f8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1192b119e514ad3b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "546cd254bd38211d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "265ca866fdba9588",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "1855dd76ab069992",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 425.5040512084961
+  },
+  "right": {
+    "id": "9a3d2e4597b415e5",
+    "type": "split",
+    "children": [
+      {
+        "id": "bdae4aafe6032316",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9aaec994725608f9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "DevOps/Organizational Learning.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "645e36f14baad134",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "DevOps/Organizational Learning.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "61a4f2d9faacbc85",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "fd387a637e9c32a9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "DevOps/Organizational Learning.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "a6c4c1c7017899ca",
+  "lastOpenFiles": [
+    "DevOps/Value Stream.md",
+    "DevOps/Kaizen Blitz.md",
+    "Math/Norms.md",
+    "Math/Normalize Data.md",
+    "Math/Matrix.md",
+    "Health/PFAS.md",
+    "Health/Longevity Diet.md",
+    "Health/Hormesis.md",
+    "Math/Cartesian Product.md",
+    "DevOps/Untitled.md",
+    "2023-07-01.md",
+    "Networking/Link Aggregation.md",
+    "Networking/Multicast.md",
+    "assets/mlag.png",
+    "mlag.png",
+    "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
+    "fundamentals/protocols/network/ssh/Fundamentals.md",
+    "Security/Keyring.md",
+    "fundamentals/protocols/network/ssh",
+    "fundamentals/protocols/network",
+    "fundamentals/protocols",
+    "fundamentals",
+    "Security/SSH.md",
+    "Networking/DHCPv4.md",
+    "Neworking/ssh/SSH.md",
+    "Networking/ssh/SSH.md",
+    "Neworking/ssh",
+    "Neworking",
+    "Operating Systems/File Permissions.md",
+    "Errors/Question Marks in ls output.md",
+    "Health/“Smart” drugs increase the level but decrease the quality of cognitive effort.md",
+    "rethoric/English Phrases.md",
+    "rethoric",
+    "Security/WebAuthn.md",
+    "Security/FIDO.md",
+    "Security/Authentication.md",
+    "Machine Learning/assets/Pasted image 20230611111119.png",
+    "Machine Learning/assets/fsquared.png",
+    "Machine Learning/assets",
+    "assets/us_court_system.png",
+    "assets/dhcp_snooping.png",
+    "Machine Learning",
+    "Networking/DNSSEC.canvas",
+    "Math",
+    "Networking/DNS.canvas",
+    "Health/assets/Pasted image 20230304151051.png",
+    "Health/assets/Pasted image 20230304151028.png",
+    "Health/assets/Pasted image 20230304151003.png"
+  ]
+}
