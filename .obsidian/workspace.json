@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DevOps/Organizational Learning.md",
-                "mode": "preview",
-                "source": true
+                "file": "Math/Separate Chaining.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DevOps/Organizational Learning.md",
+                "file": "Math/Separate Chaining.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DevOps/Organizational Learning.md",
+                "file": "Math/Separate Chaining.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DevOps/Organizational Learning.md"
+                "file": "Math/Separate Chaining.md"
               }
             }
           }
@@ -157,8 +157,12 @@
   },
   "active": "a6c4c1c7017899ca",
   "lastOpenFiles": [
-    "DevOps/Value Stream.md",
+    "DevOps/Organizational Learning.md",
+    "Math/Separate Chaining.md",
+    "Math/Linear Probing.md",
+    "Math/Avalanche Effect.md",
     "DevOps/Kaizen Blitz.md",
+    "DevOps/Value Stream.md",
     "Math/Norms.md",
     "Math/Normalize Data.md",
     "Math/Matrix.md",
@@ -188,11 +192,7 @@
     "Operating Systems/File Permissions.md",
     "Errors/Question Marks in ls output.md",
     "Health/“Smart” drugs increase the level but decrease the quality of cognitive effort.md",
-    "rethoric/English Phrases.md",
     "rethoric",
-    "Security/WebAuthn.md",
-    "Security/FIDO.md",
-    "Security/Authentication.md",
     "Machine Learning/assets/Pasted image 20230611111119.png",
     "Machine Learning/assets/fsquared.png",
     "Machine Learning/assets",

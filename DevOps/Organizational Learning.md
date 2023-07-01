@@ -9,3 +9,5 @@
 
 
 ==Conducting experiments, learning, failing, and having an open mindset  are key ingredients to success among people and living together.==
+
+*(Relates to [Kaizen Blitz](Kaizen%20Blitz.md))*
