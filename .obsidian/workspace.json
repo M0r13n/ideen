@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Math/Separate Chaining.md",
+                "file": "Programming/Hash Table.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math/Separate Chaining.md",
+                "file": "Programming/Hash Table.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Math/Separate Chaining.md",
+                "file": "Programming/Hash Table.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Math/Separate Chaining.md"
+                "file": "Programming/Hash Table.md"
               }
             }
           }
@@ -157,8 +157,9 @@
   },
   "active": "a6c4c1c7017899ca",
   "lastOpenFiles": [
-    "DevOps/Organizational Learning.md",
     "Math/Separate Chaining.md",
+    "Programming/Hash Table.md",
+    "DevOps/Organizational Learning.md",
     "Math/Linear Probing.md",
     "Math/Avalanche Effect.md",
     "DevOps/Kaizen Blitz.md",
@@ -191,7 +192,6 @@
     "Neworking",
     "Operating Systems/File Permissions.md",
     "Errors/Question Marks in ls output.md",
-    "Health/“Smart” drugs increase the level but decrease the quality of cognitive effort.md",
     "rethoric",
     "Machine Learning/assets/Pasted image 20230611111119.png",
     "Machine Learning/assets/fsquared.png",
