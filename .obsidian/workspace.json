@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "200d8c756bb7cbc0",
+        "id": "f35d0bef2f55e82a",
         "type": "tabs",
         "children": [
           {
-            "id": "1d50fd9630ede08d",
+            "id": "0653a21fa7a3332c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming/Global Interpreter Lock (GIL).md",
+                "file": "DevOps/Conways Law.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming/Global Interpreter Lock (GIL).md",
+                "file": "DevOps/Conways Law.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming/Global Interpreter Lock (GIL).md",
+                "file": "DevOps/Conways Law.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming/Global Interpreter Lock (GIL).md"
+                "file": "DevOps/Conways Law.md"
               }
             }
           }
@@ -155,8 +155,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1d50fd9630ede08d",
+  "active": "0653a21fa7a3332c",
   "lastOpenFiles": [
+    "Philosophy/Armor Fati.md",
+    "DevOps/Conways Law.md",
+    "Philosophy/Hackernews.md",
     "Programming/Global Interpreter Lock (GIL).md",
     "Misc/Digital Services Act (DSA).md",
     "Misc/Digital Markets Act (DMA).md",
@@ -177,15 +180,12 @@
     "Health/Longevity Diet.md",
     "Health/Hormesis.md",
     "Math/Cartesian Product.md",
-    "DevOps/Untitled.md",
     "2023-07-01.md",
     "Networking/Link Aggregation.md",
     "Networking/Multicast.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
-    "fundamentals/protocols/network/ssh/Fundamentals.md",
-    "Security/Keyring.md",
     "fundamentals/protocols/network/ssh",
     "fundamentals/protocols/network",
     "fundamentals/protocols",
