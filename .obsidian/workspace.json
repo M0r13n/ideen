@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "3fb53dff8a51aad4",
+        "id": "200d8c756bb7cbc0",
         "type": "tabs",
         "children": [
           {
-            "id": "377fd7cc667a8982",
+            "id": "1d50fd9630ede08d",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Programming/Global Interpreter Lock (GIL).md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -89,6 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Programming/Global Interpreter Lock (GIL).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Programming/Global Interpreter Lock (GIL).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +132,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Programming/Global Interpreter Lock (GIL).md"
+              }
             }
           }
         ],
@@ -147,8 +155,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "377fd7cc667a8982",
+  "active": "1d50fd9630ede08d",
   "lastOpenFiles": [
+    "Programming/Global Interpreter Lock (GIL).md",
+    "Misc/Digital Services Act (DSA).md",
+    "Misc/Digital Markets Act (DMA).md",
     "Operating Systems/Namespaces.md",
     "Docker.md",
     "Operating Systems/Processes.md",
@@ -179,9 +190,6 @@
     "fundamentals/protocols/network",
     "fundamentals/protocols",
     "fundamentals",
-    "Security/SSH.md",
-    "Networking/DHCPv4.md",
-    "Neworking/ssh/SSH.md",
     "Neworking/ssh",
     "Neworking",
     "rethoric",
