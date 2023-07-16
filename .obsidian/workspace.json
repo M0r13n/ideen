@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "f35d0bef2f55e82a",
+        "id": "e18b914fb1b1215b",
         "type": "tabs",
         "children": [
           {
-            "id": "0653a21fa7a3332c",
+            "id": "71bf8a7fbe57693e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DevOps/Conways Law.md",
+                "file": "Operating Systems/cloud-init.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DevOps/Conways Law.md",
+                "file": "Operating Systems/cloud-init.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DevOps/Conways Law.md",
+                "file": "Operating Systems/cloud-init.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "DevOps/Conways Law.md"
+                "file": "Operating Systems/cloud-init.md"
               }
             }
           }
@@ -155,10 +155,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0653a21fa7a3332c",
+  "active": "71bf8a7fbe57693e",
   "lastOpenFiles": [
-    "Philosophy/Armor Fati.md",
+    "Operating Systems/cloud-init.md",
     "DevOps/Conways Law.md",
+    "Philosophy/Armor Fati.md",
     "Philosophy/Hackernews.md",
     "Programming/Global Interpreter Lock (GIL).md",
     "Misc/Digital Services Act (DSA).md",
@@ -182,7 +183,6 @@
     "Math/Cartesian Product.md",
     "2023-07-01.md",
     "Networking/Link Aggregation.md",
-    "Networking/Multicast.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
