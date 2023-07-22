@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "e18b914fb1b1215b",
+        "id": "e2a2e747dd09aac9",
         "type": "tabs",
         "children": [
           {
-            "id": "71bf8a7fbe57693e",
+            "id": "d4069299029b4e8b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Operating Systems/cloud-init.md",
+                "file": "Programming/Type Hints (Python).md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Operating Systems/cloud-init.md",
+                "file": "Programming/Type Hints (Python).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Operating Systems/cloud-init.md",
+                "file": "Programming/Type Hints (Python).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Operating Systems/cloud-init.md"
+                "file": "Programming/Type Hints (Python).md"
               }
             }
           }
@@ -155,8 +155,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "71bf8a7fbe57693e",
+  "active": "d4069299029b4e8b",
   "lastOpenFiles": [
+    "Programming/Idiomatic Python.md",
+    "Programming/Type Hints (Python).md",
     "Operating Systems/cloud-init.md",
     "DevOps/Conways Law.md",
     "Philosophy/Armor Fati.md",
@@ -181,8 +183,6 @@
     "Health/Longevity Diet.md",
     "Health/Hormesis.md",
     "Math/Cartesian Product.md",
-    "2023-07-01.md",
-    "Networking/Link Aggregation.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
