@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "e2a2e747dd09aac9",
+        "id": "feda44cdda954230",
         "type": "tabs",
         "children": [
           {
-            "id": "d4069299029b4e8b",
+            "id": "049031048f90c80a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming/Type Hints (Python).md",
+                "file": "RFC/3339 - Date and Time on the Internet.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming/Type Hints (Python).md",
+                "file": "RFC/3339 - Date and Time on the Internet.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming/Type Hints (Python).md",
+                "file": "RFC/3339 - Date and Time on the Internet.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming/Type Hints (Python).md"
+                "file": "RFC/3339 - Date and Time on the Internet.md"
               }
             }
           }
@@ -155,8 +155,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d4069299029b4e8b",
+  "active": "049031048f90c80a",
   "lastOpenFiles": [
+    "DevOps/Docker Verify  Image.md",
+    "RFC/3339 - Date and Time on the Internet.md",
+    "DevOps/Docker-Volumes.md",
     "Programming/Idiomatic Python.md",
     "Programming/Type Hints (Python).md",
     "Operating Systems/cloud-init.md",
@@ -180,9 +183,6 @@
     "Math/Normalize Data.md",
     "Math/Matrix.md",
     "Health/PFAS.md",
-    "Health/Longevity Diet.md",
-    "Health/Hormesis.md",
-    "Math/Cartesian Product.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",

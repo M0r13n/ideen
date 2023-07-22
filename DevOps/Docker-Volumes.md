@@ -1,4 +1,4 @@
-# How to persist data in Docker containers
+# Docker-Volumes
 
 There are two fundamental ways of persisting data in Docker: **bind mounts** and **volumes**. By default all files created inside a container are stored on a writable container layer. This implies that:
 

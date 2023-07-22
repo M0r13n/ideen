@@ -1,3 +1,4 @@
+# 7513 - DHCP Snooping
 [[DHCPv4|DHCP]] Snooping defends against two kinds of DHCP-based attacks:
 
 - **DHCP spoofing**: an attacker responds with fake DHCP messages in an attempt to hijack IP addresses or to position itself to be the standard gateway/ DNS server (MitM attack)

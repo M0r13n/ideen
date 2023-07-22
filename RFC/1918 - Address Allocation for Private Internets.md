@@ -1,4 +1,4 @@
-# [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918)
+# 1918 - Address Allocation for Private Internets
 - introduces private addresses
 - these addresses are **not publicly routable**
 - **neither are they globally unique**
