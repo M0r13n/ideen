@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "RFC/3339 - Date and Time on the Internet.md",
+                "file": "DevOps/Docker Swarm.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "RFC/3339 - Date and Time on the Internet.md",
+                "file": "DevOps/Docker Swarm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "RFC/3339 - Date and Time on the Internet.md",
+                "file": "DevOps/Docker Swarm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "RFC/3339 - Date and Time on the Internet.md"
+                "file": "DevOps/Docker Swarm.md"
               }
             }
           }
@@ -157,8 +157,11 @@
   },
   "active": "049031048f90c80a",
   "lastOpenFiles": [
-    "DevOps/Docker Verify  Image.md",
+    "DevOps/Kubernetes.md",
+    "DevOps/Docker Swarm.md",
+    "DevOps/Docker Multiple Services in a Container.md",
     "RFC/3339 - Date and Time on the Internet.md",
+    "DevOps/Docker Verify  Image.md",
     "DevOps/Docker-Volumes.md",
     "Programming/Idiomatic Python.md",
     "Programming/Type Hints (Python).md",
@@ -180,9 +183,6 @@
     "DevOps/Kaizen Blitz.md",
     "DevOps/Value Stream.md",
     "Math/Norms.md",
-    "Math/Normalize Data.md",
-    "Math/Matrix.md",
-    "Health/PFAS.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
