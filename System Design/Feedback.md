@@ -1,0 +1,10 @@
+# Feedback
+
+Feedback occurs when outputs of a system are routed back as inputs as part of a chain of cause-and-effect that forms a circuit or loop. The system can then be said to feed back into itself (feedback loop). Feedback mechanisms are part of [Complex Systems](Complex%20Systems.md) and tend to balance them out over time. If a system is disrupted, feedback loops will work to push the system back towards the attractor (self regulation). This can - in turn - increase resilience.
+
+- **Positive feedback**: If the signal feedback from output is in phase with the input signal, the feedback is called positive feedback.
+- **Negative feedback**: If the signal feedback is out of phase by 180° with respect to the input signal, the feedback is called negative feedback.
+- **Attractor**: state or condition that a system naturally gravitates toward over time due to the influence of positive and negative feedback loops:
+	- **Steady-state attractors**: These are stable points or equilibrium states where a system settles and remains relatively constant unless acted upon by an external force. In a positive feedback loop, a system can have a steady-state attractor that amplifies deviations from the equilibrium, leading to either a new stable state or a continued deviation from the initial state: _"If you place a ball in a concave bowl, it will settle at the bottom and remain there unless acted upon by an external force"_
+	- **Limit-cycle attractors**: These represent repeating patterns or oscillations in a system's behavior. Instead of converging to a fixed point like a steady-state attractor, a limit-cycle attractor causes the system to oscillate between specific values or patterns. This type of attractor is often observed in systems with balancing negative feedback loops that regulate and stabilize the system's behavior. _"When you swing a pendulum, it will oscillate back and forth between two extreme points, forming a repeating pattern. The pendulum's motion is an example of a limit-cycle attractor."_
+

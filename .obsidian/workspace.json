@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "feda44cdda954230",
+        "id": "e9604e35338df109",
         "type": "tabs",
         "children": [
           {
-            "id": "049031048f90c80a",
+            "id": "ffd05594691f8036",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "DevOps/Docker Swarm.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -93,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DevOps/Docker Swarm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DevOps/Docker Swarm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "DevOps/Docker Swarm.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -155,10 +147,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "049031048f90c80a",
+  "active": "ffd05594691f8036",
   "lastOpenFiles": [
-    "DevOps/Kubernetes.md",
+    "System Design/Complex Systems.md",
+    "System Design/Feedback.md",
+    "System Design",
     "DevOps/Docker Swarm.md",
+    "DevOps/Kubernetes.md",
     "DevOps/Docker Multiple Services in a Container.md",
     "RFC/3339 - Date and Time on the Internet.md",
     "DevOps/Docker Verify  Image.md",
@@ -181,8 +176,6 @@
     "Math/Linear Probing.md",
     "Math/Avalanche Effect.md",
     "DevOps/Kaizen Blitz.md",
-    "DevOps/Value Stream.md",
-    "Math/Norms.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
@@ -200,7 +193,6 @@
     "assets/dhcp_snooping.png",
     "Machine Learning",
     "Networking/DNSSEC.canvas",
-    "Math",
     "Networking/DNS.canvas",
     "Health/assets/Pasted image 20230304151051.png",
     "Health/assets/Pasted image 20230304151028.png",

@@ -1,0 +1,5 @@
+# Complex Systems
+
+A complex system is a system composed of many components which may interact with each other. Examples of complex systems are Earth's global climate, organisms, the human brain, infrastructure such as power grid, transportation or communication systems, complex software and electronic systems, social and economic organizations (like cities), an ecosystem, a living cell, and ultimately the entire universe.
+
+They respond non-linearly to inputs. Or put otherwise: Linear changes produce non-linear results. Increasing dollars spent per child at schools doesn’t seem to improve educational outcomes. Despite of increasing $CO_2$ levels the earth seems to be _relatively stable_, because other components in the system act as counterbalances (ocean acidity levels, greater radiation of infrared energy into space, plants remove $CO_2$ from air).
