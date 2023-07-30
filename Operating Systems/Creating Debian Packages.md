@@ -1,17 +1,16 @@
-# Debian Packaging
+# Creating Debian Packages
 
 ## What is a Debian Package?
 - collection of files that form a application or library
 - consistent manner of automated installs, upgrade, configures and removes of a computer program
 - each Debian package consists of two components: `source package` and `binary package`
-- 
 - **Source Package**: 
 	- `.dsc` file
 	- provides all of the necessary files to compile or otherwise, build the desired piece of software.
 	- upstream sources are bundles in a tarball
 	- a description contains important metadata (name, dependencies, etc)
 	- 
-- **Binary PAckage**: 
+- **Binary Package**: 
 	- `.deb` file
 	- contains a ready to run program
 	- knows how to add itself, remote itself and even configure itself

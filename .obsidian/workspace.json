@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "e9604e35338df109",
+        "id": "0a736a0bc8ec4aa6",
         "type": "tabs",
         "children": [
           {
-            "id": "ffd05594691f8036",
+            "id": "60f44bbbf7df4206",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Operating Systems/Python Debian.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -89,6 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Operating Systems/Python Debian.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Operating Systems/Python Debian.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +132,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Operating Systems/Python Debian.md"
+              }
             }
           }
         ],
@@ -147,10 +155,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ffd05594691f8036",
+  "active": "60f44bbbf7df4206",
   "lastOpenFiles": [
-    "System Design/Complex Systems.md",
+    "Operating Systems/Creating Debian Packages.md",
+    "Creating Debian Package.md",
+    "Operating Systems/Python Debian.md",
     "System Design/Feedback.md",
+    "Programming/IPython.md",
+    "System Design/Complex Systems.md",
     "System Design",
     "DevOps/Docker Swarm.md",
     "DevOps/Kubernetes.md",
@@ -172,10 +184,6 @@
     "Operating Systems/Processes.md",
     "Programming/Hash Table.md",
     "Math/Separate Chaining.md",
-    "DevOps/Organizational Learning.md",
-    "Math/Linear Probing.md",
-    "Math/Avalanche Effect.md",
-    "DevOps/Kaizen Blitz.md",
     "assets/mlag.png",
     "mlag.png",
     "File:Using_Multi-Chassis_LAG_(MC-LAG)_for_High_Availability.png",
