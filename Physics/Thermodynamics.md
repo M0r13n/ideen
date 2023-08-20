@@ -1,0 +1,5 @@
+# Thermodynamics
+
+0. *if two systems are each in thermal equilibrium with a third, they are also in thermal equilibrium with each other.*
+1. *The change in a system’s internal energy is equal to the difference between heat added to the system from its surroundings and work done by the system on its surroundings ($\Delta U = Q - W$).In other words, energy can not be created or destroyed but merely converted from one form to another.*
+2. *Heat does not flow spontaneously from a colder region to a hotter region, or, equivalently, heat at a given temperature cannot be converted entirely into work. Consequently, the [entropy](./Entropy.md) of a closed system, or heat energy per unit temperature, increases over time toward some maximum value. Thus, all closed systems tend toward an equilibrium state in which entropy is at a maximum and no energy is available to do useful work.*
