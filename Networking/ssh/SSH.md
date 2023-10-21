@@ -30,8 +30,8 @@ graph TD
     F --> G[ssh-add]
     G --> A
 ```
-	
-	
+
+
 ## ssh-add
 - used to add new keys to a running `ssh-agent`
 - Add default keys:
@@ -95,6 +95,20 @@ The key's randomart image is:
 	- ```shell
 	ssh-keygen -t ed25519 -C "your_email@example.com"```
 
+## ssh-keyscan
+
+- utility for gathering public SSH host keys
+- works for multiple hosts
+- designed to aid in building and verifying the ssh_known_hosts file
+
+```bash
+# Get all keys (RSA, ECDSA or  ED22519)
+$ ssh-keyscan 10.0.0.1
+# Get only rsa keys
+$ ssh-keyscan -t RSA 10.0.0.1
+# Append scanned keys to known_hosts
+$ ssh-keyscan -H 10.0.2.15 >> ~/.ssh/known_hosts
+```
 
 ## Keychain
 There is open source tool for more convenience when working with `ssh-agent` and `ssh-add`: [Keychain](https://www.funtoo.org/Keychain). Keychain automatically connects to existing agents between sessions. Therefore you only need to enter your password once (after reboot). This has less security than creating a new `ssh-agent` for each session, but is more convenient. It can be installed via any packet manager.
