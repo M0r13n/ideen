@@ -157,3 +157,7 @@ keychain -k all
 	- **NEVER COPY A PRIVATE KEY**
 - keep your private keys encrypted
 	- you can even re-encrypt existing keys via `ssh-keygen -p`
+
+## Useful settings
+
+If you set `StrictHostKeyChecking` to `accept-new`, SSH will add new keys to your hosts file. It would be the same like setting `StrictHostKeyChecking` to `no` and always connecting to a new host. In both cases SSH will  automatically add the key. However if a host is known and it changes its keys (created new keys, man in the middle, etc.) than the setting `accept-new` will *not* permit a connection to this host, while the setting `no` will allow it.
