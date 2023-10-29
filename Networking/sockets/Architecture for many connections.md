@@ -1,5 +1,6 @@
 ## How to handle a high demand for connections?
 
+See the folder [multiple_connections_demo](./multiple_connections_demo/) for a demo implementation using Python.
 
 
 **Problem:**
@@ -40,7 +41,7 @@ flowchart LR
 
     subgraph F[Digester]
         direction TB
-        
+
         G[pop]
         H[execute]
         I[update]
@@ -49,6 +50,5 @@ flowchart LR
         H --> I
 
     end
-  
-```
 
+```
