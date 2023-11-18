@@ -48,35 +48,38 @@ Syntax:
 
 Examples
 - **Get disk space**: 
-	- `ansible all -a "df -h"`
+  - `ansible all -a "df -h"`
 - **Get free disk space**
-	- `ansible all -a "free -m"`
+  - `ansible all -a "free -m"`
 - **Install Python**:
-	- `ansible docker -b -m apt -a "name='python3' state=present"`
+  - `ansible docker -b -m apt -a "name='python3' state=present"`
 - **Install pip**:
-	-  `ansible docker -b -m package -a "name=python3-pip state=present"`
+  -  `ansible docker -b -m package -a "name=python3-pip state=present"`
 - **Install a package with pip**:
-	- `ansible docker -b -m pip -a "name=bottle state=present"`
-	- `ansible docker -b -m pip -a "name=bottle,pyais state=present"`
+  - `ansible docker -b -m pip -a "name=bottle state=present"`
+  - `ansible docker -b -m pip -a "name=bottle,pyais state=present"`
 - **Upgrade system packages with APT**:
-	- `ansible -m "apt" -a "update_cache=yes upgrade=yes" raspis -b`
+  - `ansible -m "apt" -a "update_cache=yes upgrade=yes" raspis -b`
 - **Call a (Python) program**
-	- `ansible docker -a "python3 -m bottle --version"`
+  - `ansible docker -a "python3 -m bottle --version"`
 - **Manage groups and users**:
-	- `ansible docker -b -m group -a "name=test-group state=present"`
-	- `ansible docker -b -m user -a "name=john state=present"`
-	- `ansible docker -b -m user -a "name=john state=absent"`
-	- `ansible docker -b -m group -a "name=test-group state=absent"`
+  - `ansible docker -b -m group -a "name=test-group state=present"`
+  - `ansible docker -b -m user -a "name=john state=present"`
+  - `ansible docker -b -m user -a "name=john state=absent"`
+  - `ansible docker -b -m group -a "name=test-group state=absent"`
 - **Copy a file to a server**:
-	- `ansible docker -m copy -a "src=./ansible.cfg dest='~/'"`
+  - `ansible docker -m copy -a "src=./ansible.cfg dest='~/'"`
 - **Retrieve a file from a server**:
-	- `ansible docker -m fetch -a "src='~/ansible.cfg' dest='/tmp'"`
-	- `ansible docker -m fetch -a "src='~/ansible.cfg' dest='/tmp/ansible.cfg' flat=yes"`
+  - `ansible docker -m fetch -a "src='~/ansible.cfg' dest='/tmp'"`
+  - `ansible docker -m fetch -a "src='~/ansible.cfg' dest='/tmp/ansible.cfg' flat=yes"`
 - **Delete a file or directory**:
-	- `ansible docker -m file -a "dest='~/ansible.cfg' state=absent"`
+  - `ansible docker -m file -a "dest='~/ansible.cfg' state=absent"`
 - **Manage Cron jobs**:
-	- `ansible docker -b -m cron -a "name=daily-cron hour=4 job='echo hi'"`
-	- `ansible docker -b -m cron -a "name=daily-cron state='absent'"`
+  - `ansible docker -b -m cron -a "name=daily-cron hour=4 job='echo hi'"`
+  - `ansible docker -b -m cron -a "name=daily-cron state='absent'"`
+- **Update packed without inventory**
+  - `ansible -m package -a "update_cache=true upgrade=full" -e "ansible_user=pi" -i 10.0.0.240, 10.0.0.240 -k --become`
+
 
 ### Roles
 
@@ -117,3 +120,7 @@ When a module gets execute, Ansiballz constructs a zipfile – which includes th
           state: restarted 
           name: sshd
 ```
+
+## Inventory
+
+It is possible to assign a static IP to a given hostname by adding the following line to the inventory: `foo ansible_host=192.0.2.1`. Now, the host `foo` resolves to the ip `192.0.2.1`.
