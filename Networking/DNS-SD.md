@@ -37,3 +37,26 @@
 - many different protocol specific use cases exist
 
   - more likely to come
+
+- RFC 9460 introduced the **SVCB** record
+
+- `SVCB` DNS RR represents a general record for different service types
+
+- `HTTPS` DNS RR is specifically designed to be used with HTTPS
+
+- these are the only two records for this purpose
+
+- alias mode: operator of "http://example.com" could point requests to a server at "svc.example.com": 
+
+  - `example.com. 3600 IN HTTPS 0 svc.example.net`
+
+
+## In the Wild
+
+- [Source][https://www.net.in.tum.de/fileadmin/bibtex/publications/papers/zirngibl2023svcb.pdf]
+- of 400M domains 
+  - 4k use SVCB records
+  - 10.5M use HTTPS records
+  - mostly Cloudflare als ALPN + ipv4-/ipv6hints
+- authors used QScanner for QUIC handshakes
+- authors used MassDNS for DNS scanning
