@@ -80,6 +80,11 @@ Examples
 - **Update packed without inventory**
   - `ansible -m package -a "update_cache=true upgrade=full" -e "ansible_user=pi" -i 10.0.0.240, 10.0.0.240 -k --become`
 
+### Loops
+
+Use the `subelements` filter to loop through **nested lists**:
+
+`loop: '{{ datacenters | subelements(''clusters'') }}'`
 
 ### Roles
 
@@ -119,6 +124,25 @@ When a module gets execute, Ansiballz constructs a zipfile – which includes th
           ansible.builtin.service: 
           state: restarted 
           name: sshd
+```
+
+#### Build known_hosts
+
+```yaml
+- name: keyscan platform hosts
+  shell: "ssh-keyscan {{ item }}"
+  register: "platform_ssh_host_keys"
+  loop:
+    - "example.com"
+    - "example.org"
+    
+- name: configure known_hosts
+  known_hosts:
+    path: "~/.ssh/known_hosts"
+    name: "{{ item.item }}"
+    key: "{{ item.stdout }}"
+    state: present
+  loop: "{{ platform_ssh_host_keys.results }}"
 ```
 
 ## Inventory

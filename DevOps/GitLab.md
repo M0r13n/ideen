@@ -36,3 +36,7 @@ There are three different options to organize a given organization on GitLab.
 	- CI/CD Pipelines
 	- Review Apps
 	- Automatic deployments
+
+## Administration
+
+- Postgresql version: `sudo gitlab-psql --version`
