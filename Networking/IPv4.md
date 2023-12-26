@@ -80,6 +80,13 @@ The following network "classes" are superseded by [[CIDR]].
 - no manual configuration is required
 - **NOT routable**: only valid on the local link (broadcast domain)
 
+## Routing
+
+When routing IP packets each router considers as much of the address as  it knows to address. This works similar to a post office that only looks at the state and city of the address on the letter while ignoring the  street or number, because post offices only route letters roughly in the right geographical region. The mailman on the other hand considers the  street and number, because he is concerned with the precise delivery.
+
+**Router as Post Office:** Just as a post office looks at the state and city to route the letter to the right geographical region, each router in an IP network looks at the destination IP address of a packet to determine the next hop in the network. Routers are concerned with directing packets towards their final destination but don't need to know the exact "street and number" (or in networking terms, the exact final endpoint within the smaller network).
+
+**Mailman as Final Delivery:** The mailman, who delivers the mail to the exact street and number, is akin to the last mile routing typically performed by a switch or a local router within a smaller network (like a LAN). At this point, the packet is in the correct local area and needs specific handling to reach the exact device or "house" in the analogy.
 
 ## IP Header
 
