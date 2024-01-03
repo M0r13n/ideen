@@ -49,3 +49,8 @@ volumes:
       - grafana_data:/var/lib/grafana
 ```
 
+## Gotcha
+
+Bind mounts are based on inodes. Most applications will not directly edit such files, but instead make a copy and replace the original file, which results in a new inode which in turn *breaks* the bind mount.
+
+As a workaround, one can create a symlink that points to the original file. The inode of the symlink will always remain the same, which keeps the inode intact and will propagate changes the original file to the running container - and vice versa.
