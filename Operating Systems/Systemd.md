@@ -55,6 +55,19 @@
 - `[Path]` monitors paths on the filesystem for changes. Another unit must exist that will be be activated when certain activity is detected at the path location.
 - `[Timer]` schedule tasks to operate at a specific time or after a certain delay
 
+## Security
+
+- **ProtectHome** which restricts access to /home, /root, and /run/user directories
+- **NoNewPrivileges**, which ensures that processes cannot gain new privileges
+- **PrivateTmp**: Isolates temporary files of a service.
+- **ProtectSystem**: Makes system directories read-only or inaccessible.
+- **ProtectKernelTunables**: Prevents alteration of kernel parameters.
+- **ProtectControlGroups**: Restricts control group modifications.
+- **RestrictAddressFamilies**: Limits socket address families used.
+- **CapabilityBoundingSet**: Controls the capabilities granted to the service.
+- **MemoryDenyWriteExecute**: Prevents writing and executing memory.
+- **RestrictRealtime**: Prevents real-time scheduling.
+
 ## Timers as Cronjobs
 
 systemd timers can be used to perform the same kinds of tasks as the cron tool but offer more flexibility in terms of the calendar and monotonic time specifications for triggering events.

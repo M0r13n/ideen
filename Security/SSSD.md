@@ -38,6 +38,7 @@ id_provider = ldap
 auth_provider = ldap
 access_provider = ldap
 sudo_provider = ldap
+ad_hostname = sles15sp11.intern.priv
 ldap_uri = ldap://ldap.example.com
 ldap_search_base = dc=example,dc=com
 ldap_user_search_base = ou=users,dc=example,dc=com
