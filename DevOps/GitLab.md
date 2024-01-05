@@ -40,3 +40,7 @@ There are three different options to organize a given organization on GitLab.
 ## Administration
 
 - Postgresql version: `sudo gitlab-psql --version`
+
+## Mint a PAT via SSH
+
+` ssh git@gitlab.com personal_access_token someTokenName api,read_repository,read_api,read_user,read_registry 90`
