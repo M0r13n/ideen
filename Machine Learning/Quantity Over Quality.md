@@ -1,0 +1,8 @@
+# Quantity over Quality
+
+There seems to be a common theme regarding machine learning, particularly emphasising the power of computation and (large) data over humand-designed knowledge or heuristics. Basically, it seems that _fast computation and a large enough data set beats the smartest algorithms by a lot_.
+
+1.  **[The Bitter Lesson (2019)](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)** is an article by Rich Sutton that emphasises that the most significant advances in AI have come from leveraging ==computation rather than incorporating smarter algorithms==. He names the generalization of Moore's law as the _==continued exponentially falling cost per unit of computation==_ as the ultimate reason. Examples include the first defeat of a human in chess which was possible due to massive deep search, which in turn required massive amount of computation - but the algorithm was relatively simple and well known. The same applies to the defeat of Go.
+2. **[The Unreasonable Effectiveness of Data (2009)](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/35179.pdf)** is a paper from Google. It suggests that ==having vast amounts of data can often compensate for less sophisticated algorithms==. In many cases, simply increasing the amount of data available for  training an AI model can lead to significant improvements in  performance, even when the underlying algorithm remains unchanged. This suggestion seems to be particularly evident in domains like Natural Language Processing (NLP) and Image Recognition. 
+
+Based on these observations one should prefer unsupervised learning on unlabeled data, which is **much** more plentiful dan labeled data.
