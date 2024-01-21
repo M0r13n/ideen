@@ -7,32 +7,32 @@
 </div>
 
 <table>
-<tr>
-<td style="vertical-align: top;">
-
-### Clusters
-
-- [Cluster 1]()
-- [Cluster 2]()
-- [Cluster 3]()
-
-</td>
-<td style="vertical-align: top;">
-
-### Servers
-
-- [Overview](./02_servers.md)
-- [Artifactory](./details/02_artifactory.md)
-
-</td>
-
-<td style="vertical-align: top;">
-
-### Network
-
-- [Network Design](https://wikitech.wikimedia.org/wiki/Network_design)
-- [Network Cheatsheet](https://wikitech.wikimedia.org/wiki/Network_cheat_sheet)
-</td>
-
-</tr>
+  <tbody>
+    <tr>
+      <th style="text-align: left;">Clusters</th>
+      <th>Servers</th>
+      <th>Network</th>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <ul>
+          <li><a>Cluster 1</a></li>
+          <li><a>Cluster 2</a></li>
+          <li><a>Cluster 3</a></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><a href="./02_servers.md">Overview</a></li>
+          <li><a href="./details/02_artifactory.md">Artifactory</a></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><a href="https://wikitech.wikimedia.org/wiki/Network_design">Network Design</a></li>
+          <li><a href="https://wikitech.wikimedia.org/wiki/Network_cheat_sheet">Network Cheatsheet</a></li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
