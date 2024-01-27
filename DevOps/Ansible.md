@@ -37,7 +37,12 @@ or when using SSH
 Provide a custom inventory file:
 `ansible all -m ping -i ./hosts.ini`
 
+Execute a role:
+
+`ansible localhost --module-name include_role --args name=<role_name>`
+
 ### Ad-hoc Commands
+
 Syntax:
 
 `ansible <HOSTS> -a <COMMAND>`
@@ -47,7 +52,7 @@ Syntax:
 - `-b` stand for become (e.g. become root)
 
 Examples
-- **Get disk space**: 
+- **Get disk space**:
   - `ansible all -a "df -h"`
 - **Get free disk space**
   - `ansible all -a "free -m"`
@@ -101,28 +106,28 @@ When a module gets execute, Ansiballz constructs a zipfile – which includes th
 #### Regenerate SSH Host keys
 
 ```yml
---- 
-# This playbook re-generates the SSH host keys 
-- hosts: foo 
-	become: true 
-  tasks: 
-    - name: Regen SSH host keys 
-      block: 
-        - name: "Delete existing host key files" 
-          ansible.builtin.file: 
-          path: "{{ item }}" 
-          state: absent 
-          with_fileglob: /etc/ssh/ssh_host_* 
+---
+# This playbook re-generates the SSH host keys
+- hosts: foo
+	become: true
+  tasks:
+    - name: Regen SSH host keys
+      block:
+        - name: "Delete existing host key files"
+          ansible.builtin.file:
+          path: "{{ item }}"
+          state: absent
+          with_fileglob: /etc/ssh/ssh_host_*
 
-        - name: "Regenerate host keys" 
-          ansible.builtin.command: "dpkg-reconfigure openssh-server" 
-          changed_when: true 
-          environment: 
-          DEBIAN_FRONTEND: noninteractive 
+        - name: "Regenerate host keys"
+          ansible.builtin.command: "dpkg-reconfigure openssh-server"
+          changed_when: true
+          environment:
+          DEBIAN_FRONTEND: noninteractive
 
-        - name: "Restart SSHD service" 
-          ansible.builtin.service: 
-          state: restarted 
+        - name: "Restart SSHD service"
+          ansible.builtin.service:
+          state: restarted
           name: sshd
 ```
 
@@ -135,7 +140,7 @@ When a module gets execute, Ansiballz constructs a zipfile – which includes th
   loop:
     - "example.com"
     - "example.org"
-    
+
 - name: configure known_hosts
   known_hosts:
     path: "~/.ssh/known_hosts"
@@ -143,6 +148,18 @@ When a module gets execute, Ansiballz constructs a zipfile – which includes th
     key: "{{ item.stdout }}"
     state: present
   loop: "{{ platform_ssh_host_keys.results }}"
+```
+
+### Get infos about a user
+
+```yaml
+- name: Check user info
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    state: present
+  check_mode: true  # <= use check mode for read only
+  register: user_info
 ```
 
 ## Inventory

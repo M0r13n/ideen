@@ -57,6 +57,6 @@ As a workaround, one can create a symlink that points to the original file. The 
 
 ## Secrets
 
-[`--mount=type=secret`](https://docs.docker.com/engine/reference/builder/#run---mounttypesecret)
+[`--mount-type=secret`](https://docs.docker.com/engine/reference/builder/#run---mounttypesecret)
 
 This mount type allows the build container to access secure files such as private keys without baking them into the image.
