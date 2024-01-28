@@ -2,11 +2,19 @@
 
 => [Cheat Sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
 
+## Don't be too harsh
+
+- [Reasons to avoid static type checking](https://typing.readthedocs.io/en/latest/source/typing_anti_pitch.html)
+
+> Type annotations can both help and hurt readability. While type annotations can serve both humans and machines, particularly complex annotations or changes to idioms serve machines more than they do humans. Readability counts.
+
+> The cost-benefit ratio isn’t good enough. Pleasing static type checkers requires a non-zero amount of busy work. If this isn’t worth the extra confidence you get, you shouldn’t add static type checking.
+
 ## Generics
 
 - `T = TypeVar('T')`
 - `first(l: Sequence[T]) -> T` a sequence generic over the TypeVar T
-- `class LoggedVar(Generic[T]): ...` generic class 
+- `class LoggedVar(Generic[T]): ...` generic class
 
 ```python
 from typing import Generic, TypeVar, Sequence
@@ -90,4 +98,3 @@ def add_two(x: float, y: float) -> float:
     '''Add two numbers together.'''
     return x + y
 ```
-
