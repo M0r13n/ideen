@@ -96,3 +96,11 @@ dpkg-buildpackage -us -uc -b
 cp -a /build/*.deb /build/*.buildinfo /build/*.changes /output/
 ls -l /output
 ```
+
+## Where is installed meta-data stored?
+
+On Ubuntu 22.04 the package meta-data can be found here:
+
+`/var/lib/dpkg/info/`
+
+I already had to edit the `.postinst` file from this dir in order to remove a package.
