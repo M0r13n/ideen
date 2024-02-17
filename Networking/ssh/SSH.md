@@ -71,9 +71,9 @@ Since [Version 7.2](https://www.openssh.com/txt/release-7.2) of `openssh` it is 
 ```bash
 $ ssh-keygen
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/ylo/.ssh/id_rsa): 
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
+Enter file in which to save the key (/home/ylo/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
 Your identification has been saved in /home/ylo/.ssh/id_rsa.
 Your public key has been saved in /home/ylo/.ssh/id_rsa.pub.
 The key fingerprint is:
@@ -161,3 +161,19 @@ keychain -k all
 ## Useful settings
 
 If you set `StrictHostKeyChecking` to `accept-new`, SSH will add new keys to your hosts file. It would be the same like setting `StrictHostKeyChecking` to `no` and always connecting to a new host. In both cases SSH will  automatically add the key. However if a host is known and it changes its keys (created new keys, man in the middle, etc.) than the setting `accept-new` will *not* permit a connection to this host, while the setting `no` will allow it.
+
+## sshfs
+
+[sshfs](https://wiki.ubuntuusers.de/FUSE/sshfs/) is a FUSE module that allows to mount remote file systems via SSH.
+
+The most simple invocation looks like this:
+
+`sshfs user@foo-pc:/path/to-dir ~/to-dir`
+
+Generally, it make sense to map user permissions:
+
+`sshfs user@foo-pc:/path/to-dir ~/to-dir -o idmap=user -o uid=$(id -u) -o gid=$(id -g) `
+
+It is also possible to add the following line to `/etc/fstab`:
+
+`sshfs#user@foo-pc:/path/to-dir ~/to-dir fuse uid=1003,gid=100,umask=0,allow_other,_netdev,IdentityFile=/home/user/key.pub 0 0`
