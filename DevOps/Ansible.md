@@ -162,6 +162,34 @@ When a module gets execute, Ansiballz constructs a zipfile – which includes th
   register: user_info
 ```
 
+### Resize Drive
+
+The following three tasks can be used to resize an existing partition to 100% on modern Ubuntu systems. It handles many edge cases that can occur when working with virtual drives and logical volumes.
+
+```yaml
+- name: Extend an existing partition to fill all available space
+  community.general.parted:
+    device: /dev/sda
+    number: 3
+    part_end: "100%"
+    resize: true
+    state: present
+
+- name: Resize the volume group /dev/sda3 to the maximum possible
+  community.general.lvg:
+    vg: ubuntu-vg
+    pvs: /dev/sda3
+    pvresize: true
+
+- name: Extend the logical volume to take all remaining space
+  community.general.lvol:
+    vg: ubuntu-vg
+    lv: ubuntu-lv
+    size: 100%PVS
+    resizefs: true
+```
+
+
 ## Inventory
 
 It is possible to assign a static IP to a given hostname by adding the following line to the inventory: `foo ansible_host=192.0.2.1`. Now, the host `foo` resolves to the ip `192.0.2.1`.
