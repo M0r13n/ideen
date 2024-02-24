@@ -1,0 +1,29 @@
+# Automated Unit Test Improvement using Large Language Models at Meta
+
+- [Original Paper](https://arxiv.org/abs/2402.09171)
+- **Goal**: improve existing human-written tests
+  - _"it helps humans; does not replace them"_
+  - just another tool in our toolkit
+- **Filters** are used to assure measurable quality improvements
+  - prevent hallucinations
+  - progressively demanding semantic filters
+  - _does it build?_
+  - _does it pass?_
+  - _is it flaky? (does it pass repeatedly?)_
+  - _does it increase coverage?_ 
+- works **with AND without** the class under test as context
+  - the actual implementation of the provides better results when passed as context
+  - but even just the existing test case without the implementation of the class under test yields additional coverage (black box)
+- Funfacts:
+  - some repos have **> 100.000 commits/day**
+  - Meta is just a normal company with lots of untested code
+  - **Coverage is logarithmic**
+    - the more code is already covered, the harder it is to cover more code
+- line coverage was used as **proxy of improvement**
+- the LLM mimics existing test cases
+  - _"it follows the fashion"_
+  - mostly desirable for the sake of consistency
+  - _"maybe it can be used as trend setter?"_
+- it found a jackpot
+  - added a test case for a set of previously untested classes
+  - resulted in >1k LOC of additional coverage
