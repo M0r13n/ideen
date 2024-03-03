@@ -44,3 +44,23 @@ There are three different options to organize a given organization on GitLab.
 ## Mint a PAT via SSH
 
 ` ssh git@gitlab.com personal_access_token someTokenName api,read_repository,read_api,read_user,read_registry 90`
+
+## Delete uploaded files
+
+Send a GraphQL query:
+
+```graphql
+mutation{
+  uploadDelete(input: { projectPath: "YOUR_PROJECT_PATH", secret: "YOUR_SECRET_HASH_KEY" , filename: "FILE_NAME" }) { 
+    upload {
+      id
+      size
+      path 
+    }
+    errors
+  }
+}
+```
+
+- https://stackoverflow.com/questions/65087695/how-can-i-completely-delete-a-file-that-was-uploaded-to-gitlab-in-an-issue-comme
+- https://gitlab.com/gitlab-org/gitlab/-/merge_requests/92791
