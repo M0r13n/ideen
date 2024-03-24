@@ -43,7 +43,7 @@ An operating system provides the environment in which programs are executed. It 
 ### Examples
 
 | Category          | Description                                                   | Examples                              |
-|-------------------|---------------------------------------------------------------|---------------------------------------|
+| ----------------- | ------------------------------------------------------------- | ------------------------------------- |
 | Process Control   | create/terminate processes<br>wait/signal events              | `fork()`<br>`exit()`<br>`wait()`      |
 | File Management   | create/delete files<br>read/write<br>attributes               | `open()`<br>`read()`<br>`write()`     |
 | Device Management | request/release devices<br>read,write from devices            | `ioctl()`<br>`read()`<br>`write()`    |
@@ -51,3 +51,22 @@ An operating system provides the environment in which programs are executed. It 
 | Communication     | create/delete communication channels<br>send/receive messages | `pipe()`<br>`shm_open()`<br>`mmap()`  |
 | Portection        | get/set file permissions                                      | `chmod()`<br>`umask()`<br>`chown()`dd |
 _(taken from page 71 of Silberschatz Operating Systems)_
+
+## Linkers and Loaders
+
+1. Source Code (`main.c`) is compiled into an object file (`main.o`) using a command like `gcc -c main.c`. This step involves translating the human-readable code into machine-readable instructions, but not yet linking it with other object files or libraries.
+2. The linker takes one or more object files (like `main.o`) and combines them together with any necessary libraries to create an executable file (e.g., `./main`). This step resolves symbols and addresses between different object files and libraries to create a complete program that can be run.
+3. When the program (`./main`) is executed, the operating system's loader loads it into memory, along with any dynamically linked libraries it depends on. This process involves allocating memory for the program's code and data, resolving memory addresses, and setting up the program's execution environment.
+
+## Application Binary Interface
+
+The **ABI** defines how different components of binary code can interface for a given operating system on a given architecture.
+
+## Monolithic Kernel
+
+The Kernel provides the file system, CPU scheduling, memory management and other operating system functions through System Calls exposed through the System Call Interface to  user programs. The entire Kernel is compiled into a single address space, but the Linux Kernel does provide a modular design that allows runtime modifications.
+
+## Microkernels
+
+
+The operating system is condensed, and all nonessential components are removed from the kernel. Instead, these components are implemented in user space. This makes it easier to extend the OS because additional features can be implemented as user programs without modifications to the kernel. Also, such kernels tend to be more secure and reliable because services running as users do not compromise the rest of the system. On the downside, microkernels suffer from system-function overhead and message passing.
