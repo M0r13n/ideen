@@ -1,9 +1,32 @@
 # SSH
 
+The original protocol is described in [RFC4251](https://www.rfc-editor.org/rfc/rfc4251.html#section-1).
+
+## Key Exchange
+
+```mermaid
+sequenceDiagram
+    Client->>Client: Generate random session key
+    Client->>Client: Encrypt session key with servers pub key
+    Client->>Server: send encrypted key
+    Server->>Server: decrypt key
+    Server->Client: encrypted session established
+```
+
+- The client generates a random session key, called the symmetric key or session key, which will be used to encrypt the data exchanged between the client and server
+- The client encrypts this session key using the *server's* public key obtained in the previous step
+- The client sends the encrypted session key to the server
+- Upon receiving the encrypted session key, the server decrypts it using its private key
+- The server now has the session key shared with the client
+
+## MAC
+
+The **message authentication code (MAC)**, sometimes known as an authentication tag, is a short piece of information used for authenticating and integrity-checking a message. In other words, to confirm that the message came from the stated sender (its authenticity) and has not been changed (its integrity).
+
 ## Public Key Authentication
 
 ```mermaid
-	sequenceDiagram
+    sequenceDiagram
 
     Client->>Server: Hey, this is my public key
     Server->>Server: Check authorized_keys
