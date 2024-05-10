@@ -188,6 +188,31 @@ Large messages could also induce head-of-line blocking. Because messages must be
 
 TCP requires lon-lived connections state for **each peer that the applications communicates with**. This is unwanted in data centers, because applications may have hundreds of thousands of them, resulting in additional overhead. 
 
+## TCP_NODELAY
+
+This is an optional socket option that potentially significantly improves latency.
+
+By default, TCP may be configured to better amortize TCP headers as per [RFC896](https://datatracker.ietf.org/doc/html/rfc896):
+
+> There is a special problem associated with small  packets.   When TCP   is  used  for  the transmission of single-character messages originating at a keyboard, the typical result  is  that  41  byte packets (one   byte  of data, 40 bytes of header) are transmitted for each byte of  useful data.  This 4000%  overhead  is  annoying but tolerable on  lightly loaded networks. 
+
+The proposed solution was therefore:
+
+> The solution is to inhibit the sending of new TCP segments when new outgoing data arrives from the user if any previously transmitted data on the connection remains unacknowledged.
+
+Nagle's algorithm:
+
+- the first segment is sent regardless of size.
+- next, if the receiving window and the data to send are at least the maximum segment size (MSS), a full MSS segment is sent.
+- otherwise, if the sender is still waiting on the receiver to acknowledge previously sent data, the sender buffers its data until it receives an acknowledgement and then sends another segment. If there is no unacknowledged data, any available data iso sent immediately.
+
+But this feature interferes with delayed `ACK`\`s ([RFC813](https://datatracker.ietf.org/doc/html/rfc813)), where the goal is to delay sending the acknowledgement of a packet at least until there’s some data to send back. These two features create a potential problem:
+
+
+> Nagle’s algorithm is blocking sending more data until an `ACK` is received, but delayed ack is delaying that `ack` until a response is ready. Great for keeping packets full, not so great for latency-sensitive pipelined applications.
+_([source](https://brooker.co.za/blog/2024/05/09/nagle.html))_
+
+`TCP_NODELAY` disable Nagle’s algorithm. Thus, TCP packets will be sent immediately.
 
 ## Resources
 
