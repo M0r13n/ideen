@@ -18,3 +18,26 @@
 ## Operations
 
 UNIX requires that the programmer explicitly opens a file using the `open()` system call before using it. This system call takes a file name as well as access mode information. `open()` then returns a pointer to the entry of the file in the **open-file table** - a system wide table containing information about all open files (for better performance). The **per-process table** tracks all files that a process has open. For instance, it stores the current file pointer as well as access rights. Each entry in this table points to a entry in the system wide file table, which holds information that is process independent: inode, location on disk, access dates, size. It also contains a `open count` that counts how many processes opened the file/
+
+## File Types
+
+- **File extension:** most common way to determine a file's type
+- **Magic numbers:** unique "magic number" or "file signature" at the beginning of the file.This is a sequence of bytes that identifies the file format.
+
+Linux systems use MIME type databases to map file extensions and magic numbers to MIME types. The most common database is the mime.types file, usually located at `/etc/mime.types` or `/usr/share/mime/mime.types`. This file contains a list of MIME types, their corresponding file extensions.
+
+```py
+# https://en.wikipedia.org/wiki/List_of_file_signatures
+
+# Create a Amiga Hunk executable file
+with open('/tmp/foo.bar', 'wb') as fd:
+    fd.write(b"\x00\x00\x03\xF3")
+    fd.write(bytes(128))
+
+# $ file foo.bar
+# foo.bar: AmigaOS loadseg()ble executable/binary
+
+# Create a file with a #!
+with open('/tmp/foo.bar', 'wb') as fd:
+    fd.write(b"\x23\x21")  # -> shebang #!
+```
