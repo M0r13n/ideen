@@ -41,3 +41,32 @@ with open('/tmp/foo.bar', 'wb') as fd:
 with open('/tmp/foo.bar', 'wb') as fd:
     fd.write(b"\x23\x21")  # -> shebang #!
 ```
+
+## Directory Structure
+
+- symbol table that maps names to control blocks
+- implemented as a **tree**
+  - single root directory
+  - any number of subdirectories (nodes)
+  - files are leaves
+- directories are implemented as special files -> `IS_FILE: bool`
+- each node in the directory tree has:
+  - name
+  - type
+  - Inode:
+    - file type
+    - ownership
+    - permissions
+    - timestamps
+    - file size
+    - block pointers
+  - single parent node
+  - multiple children
+- the Inode is a reference to the Inode in the Inode table
+  - `ls -i` shows the Inode number
+- acyclic graphs allow for file sharing:
+  - **hard link**: directory entry with the same Inode
+  - **soft link:** soft links Inode contains a path to the referenced file
+- the Inode is only deleted if all linking hard links are also removed (reference counting)
+- soft links are left when a file is deleted
+  - it is up to the user to handle this
