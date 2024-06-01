@@ -70,3 +70,19 @@ with open('/tmp/foo.bar', 'wb') as fd:
 - the Inode is only deleted if all linking hard links are also removed (reference counting)
 - soft links are left when a file is deleted
   - it is up to the user to handle this
+
+## Filesystem Protection
+
+- goal: prevent physical damage & improper access
+- `rwx` <=> Read, Write, Execute
+- **Access Control List (ACL)** identity based access per file/directory
+	- owner, group, other
+	- precedence based on granularity
+		- the more specific the specification, i.e. the more precise the path, the higher the precedence
+- 9 bits per file to access the access on Linux
+
+| Owner | Group | Other|
+| ---   | ---   | ---  |
+|`rwx`  |`r-x`  |`r--` |
+|`111`  | `101` | `100`|
+|`7`    | `5`   |  `4` |
