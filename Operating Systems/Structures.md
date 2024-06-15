@@ -39,11 +39,12 @@ An operating system provides the environment in which programs are executed. It 
   - less than five params: passed in registers
   - more than five params: stored in block in memory and the address of the block is passed as a register
   - params can be pushed onto a stack
+- [Searchable Linux Syscall Table](https://filippo.io/linux-syscall-table/)
 
 ### Examples
 
 | Category          | Description                                                   | Examples                              |
-| ----------------- | ------------------------------------------------------------- | ------------------------------------- |
+|-------------------|---------------------------------------------------------------|---------------------------------------|
 | Process Control   | create/terminate processes<br>wait/signal events              | `fork()`<br>`exit()`<br>`wait()`      |
 | File Management   | create/delete files<br>read/write<br>attributes               | `open()`<br>`read()`<br>`write()`     |
 | Device Management | request/release devices<br>read,write from devices            | `ioctl()`<br>`read()`<br>`write()`    |
