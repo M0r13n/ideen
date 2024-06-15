@@ -101,6 +101,18 @@ Ansible uses the **Ansiballz** framwork. This framework contains boilerplate cod
 
 When a module gets execute, Ansiballz constructs a zipfile – which includes the module file, files in `ansible/module_utils` that are imported by the module, and some boilerplate to pass in the module’s parameters. The zipfile is then Base64 encoded and wrapped in a small Python script which decodes the Base64 encoding and places the zipfile into a temp directory on the managed node. It then extracts just the Ansible module script from the zip file and places that in the temporary directory as well. Then it sets the PYTHONPATH to find Python modules inside of the zip file and imports the Ansible module as the special name, `__main__`. Importing it as `__main__` causes Python to think that it is executing a script rather than simply importing a module. This lets Ansible run both the wrapper script and the module code in a single copy of Python on the remote machine.
 
+### Gotchas when becoming an unprivileged user
+
+When using Ansible, there can be issues with becoming an unprivileged user (`become_user`) when the current login user (`ansible_user`) is also unprivileged. This arises due to the following sequence of steps that Ansible performs while executing a task:
+
+1. Ansible substitutes parameters into the module file on the controller.
+2. Ansible copies the module file to the remote host (into a temporary directory).
+3. Ansible executes the module.
+
+This process encounters issues when `ansible_user` and `become_user` are different, especially if neither user has root privileges. The problem arises because the temporary module file, created by `ansible_user`, may not be accessible or executable by `become_user` due to file permission restrictions.
+
+To address this, you can install the `acl` package on the remote host. This allows Ansible to use the `setfacl` command to set Access Control Lists (ACLs), which can provide the necessary permissions to share the temporary module file between different users.
+
 ### Sample Playbooks
 
 #### Regenerate SSH Host keys
