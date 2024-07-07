@@ -81,8 +81,10 @@ with open('/tmp/foo.bar', 'wb') as fd:
 		- the more specific the specification, i.e. the more precise the path, the higher the precedence
 - 9 bits per file to access the access on Linux
 
-| Owner | Group | Other|
-| ---   | ---   | ---  |
-|`rwx`  |`r-x`  |`r--` |
-|`111`  | `101` | `100`|
-|`7`    | `5`   |  `4` |
+| Owner | Group | Other |
+| ----- | ----- | ----- |
+| `rwx` | `r-x` | `r--` |
+| `111` | `101` | `100` |
+| `7`   | `5`   | `4`   |
+
+## Mounting
