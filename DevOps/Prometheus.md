@@ -1,7 +1,6 @@
 # Prometheus
 
-Prometheus is an Open-Source Monitoring and Altering system, that was developed by SoundCloud in 2012. Since 2016 it is part of the *Cloud Native Computing Foundation*, like Kubernetes. 
-
+Prometheus is an Open-Source Monitoring and Altering system, that was developed by SoundCloud in 2012. Since 2016 it is part of the _Cloud Native Computing Foundation_, like Kubernetes.
 
 ## Architecture
 
@@ -21,25 +20,24 @@ Prometheus is an Open-Source Monitoring and Altering system, that was developed 
    - Immediate Event-Driven Metrics: Applications can push metrics based on events or triggers, allowing more fine-grained control over when and what metrics are collected.
    - Better Control over Resource Usage: Applications have control over when and how frequently metrics are pushed, helping manage resource usage effectively.
 
-   
-
 ## Scrape Interval & Exporter services
 
-   1. **Scrape Interval**: The scrape interval is a configuration setting in Prometheus that determines how frequently Prometheus scrapes the `/metrics` endpoint of each target to collect metrics. It specifies the time interval between successive scrapes of a particular target. For example, if the scrape interval is set to 15 seconds, Prometheus will make a GET request to the target's `/metrics` endpoint every 15 seconds to collect fresh metric data.
-   2. **Exporter Service**: On each target, you typically have an exporter service or an agent that is responsible for collecting the metrics from the various components or applications running on that target. The exporter service collects the relevant metrics and exposes them at the `/metrics` endpoint in a format that Prometheus can understand (e.g., Prometheus exposition format). Examples of exporters include the Node Exporter, the Apache Exporter, or the MySQL Exporter.
-   3. **Scraping Process**: When Prometheus performs a scrape, it sends an HTTP GET request to the `/metrics` endpoint of the target. The target, which is running the exporter service, responds to this request by collecting the metrics from the relevant components or applications running on that target and providing them in the response. Prometheus then parses the response, extracts the metrics, and stores them in its time-series database for further processing and querying
+1.  **Scrape Interval**: The scrape interval is a configuration setting in Prometheus that determines how frequently Prometheus scrapes the `/metrics` endpoint of each target to collect metrics. It specifies the time interval between successive scrapes of a particular target. For example, if the scrape interval is set to 15 seconds, Prometheus will make a GET request to the target's `/metrics` endpoint every 15 seconds to collect fresh metric data.
+2.  **Exporter Service**: On each target, you typically have an exporter service or an agent that is responsible for collecting the metrics from the various components or applications running on that target. The exporter service collects the relevant metrics and exposes them at the `/metrics` endpoint in a format that Prometheus can understand (e.g., Prometheus exposition format). Examples of exporters include the Node Exporter, the Apache Exporter, or the MySQL Exporter.
+3.  **Scraping Process**: When Prometheus performs a scrape, it sends an HTTP GET request to the `/metrics` endpoint of the target. The target, which is running the exporter service, responds to this request by collecting the metrics from the relevant components or applications running on that target and providing them in the response. Prometheus then parses the response, extracts the metrics, and stores them in its time-series database for further processing and querying
 
-:warning: <mark>Metrics should only be pulled from the application when Prometheus scrapes them, exporters should not perform scrapes based on their own timers. That is, all scrapes should be synchronous.  </mark>  
+:warning: <mark>Metrics should only be pulled from the application when Prometheus scrapes them, exporters should not perform scrapes based on their own timers. That is, all scrapes should be synchronous. </mark>
 
-:warning: <mark>If a metric is particularly expensive to retrieve, i.e. takes more than a minute, it is acceptable to cache it. This should be noted in the `HELP` string.   </mark>  
+:warning: <mark>If a metric is particularly expensive to retrieve, i.e. takes more than a minute, it is acceptable to cache it. This should be noted in the `HELP` string. </mark>
 
 ## Metrics
+
 There are **four** different metrics available in Prometheus:
 
 - **Counter**: Simple counter that can only be **incremented**. Can be **reset to zero**. Typical examples for counters are **error counts** or **page views**.
-- **Gauge**: Variable values that fluctuate. Values are constantly increasing or decreasing. Typically seen when monitoring CPU usage, RAM usage or JVM heap size. 
+- **Gauge**: Variable values that fluctuate. Values are constantly increasing or decreasing. Typically seen when monitoring CPU usage, RAM usage or JVM heap size.
 - **Histogram**: Summarizes statistical information. E.g. response time
-- **Summary**: Summary metrics are used to track the size of events, usually how long they take. Typically it consists of two counters + some gauges. 
+- **Summary**: Summary metrics are used to track the size of events, usually how long they take. Typically it consists of two counters + some gauges.
 
 Fundamentally, every metric is a data point made of:
 
@@ -65,7 +63,6 @@ current_humidity{room="bathroom"} 64.7
 The keyword `# HELP` provides some kind of description about the metric.
 `# TYPE` defines the type of the metric, which can be any of the four basic types listed above.
 
-
 ### Naming conventions
 
 Metrics should be named after the following pattern:
@@ -78,30 +75,31 @@ where,
   - is a namespace for the given metric
   - it is used to give the metric some context
   - e.g. application name (mktxp) or service name (http)
-- **NAME**: 
+- **NAME**:
   - is a name for the metric
   - tells us, what is measured
   - e.g. cpu_seconds, humidity, request_duration
-- **SUFFIX**: 
+- **SUFFIX**:
   - is used to describe the unit
   - seconds, bytes, total, info
   - [Base Units](https://prometheus.io/docs/practices/naming/#base-units)
 
 ### Metadata
 
-So, if Prometheus only allows to store numeric metrics, how can I store meta data. It could be handy so store the software version, branch or commit. 
+So, if Prometheus only allows to store numeric metrics, how can I store meta data. It could be handy so store the software version, branch or commit.
 
 To achieve this a single time series is exposed that always has the value 1.
 The information is then stored as labels.
 
 ```python
-build_info = Gauge('prometheus_build_info', 'Build information', 
+build_info = Gauge('prometheus_build_info', 'Build information',
     ['branch', 'goversion', 'revision', 'version'])
-build_info.labels('HEAD', 'go1.6.2', 
+build_info.labels('HEAD', 'go1.6.2',
     '16d70a8b6bd90f0ff793813405e84d5724a9ba65', '1.0.1').set(1)
 ```
 
 ## PromQL
+
 Query language used by Prometheus. It is read only.
 
 ### Examples
@@ -113,10 +111,11 @@ Select all time series metrics that have the `mikrotik_system_cpu_load` metric n
 These time series can be filtered by appending comma separated matchers (key-value pairs) to the query (Note that there is no space between the values):
 
 `mikrotik_system_cpu_load{address="192.168.0.1"}`
-or 
+or
 `mikrotik_system_cpu_load{address="192.168.0.1",running="true"}`
 
 Optional logical operators:
+
 - `=`: equal
 - `!=`: not equal
 - `=~`: regex match
@@ -126,14 +125,18 @@ Get all DHCP leases for devices in the `192.168.0.0/16` network:
 
 `mikrotik_dhcp_leases_metrics{address=~"192.168.*"}`
 
+To group the metrics by the name label, you can use the max function (or another aggregation function like sum or avg if appropriate) and apply the by clause:
+
+`max(max_over_time(mktxp_netwatch_status{routerboard_address="$node"}[1m])) by (name)`
+
 ### Functions and operators
 
-###  Retention Period
+### Retention Period
 
 - defaults to 15 days
 - any time series data older than that is deleted
 - can be customized by adding to following parameter when calling Prometheus:
-	- `--storage.tsdb.retention.time=1y"`
+  - `--storage.tsdb.retention.time=1y"`
 
 ## Terms
 
@@ -143,11 +146,11 @@ Get all DHCP leases for devices in the `192.168.0.0/16` network:
 - sorted by timestamp
 - timestamps use millisecond precision
 - each time series is **uniquely identified** by its name and a set of labels:
-	- `temperature`
-	- `temperature{city=”NY”}`
-	- `temperature{city=”SF”}`
-	- `temperature{city=”SF”, unit=”Celsius”}`
-	- `humidity`
+  - `temperature`
+  - `temperature{city=”NY”}`
+  - `temperature{city=”SF”}`
+  - `temperature{city=”SF”, unit=”Celsius”}`
+  - `humidity`
 
 ### Data Point
 
@@ -157,20 +160,20 @@ Get all DHCP leases for devices in the `192.168.0.0/16` network:
 
 - number of unique time series stored in Prometheus
 - defined by the sum of all distinct time series:
-	- count of distinctt values for one label
-	- the number of labels
-	- the number of distinct metric names
-		- `temperature`
-		- `temperature{city=”NY”}`
-		- `temperature{city=”SF”, unit=”Fahrenheit”}`
-		- `temperature{city=”SF”, unit=”Celsius”}`
-		- `C = 2 x 2 = 4`
-			- two different labels (city, unit) with two different values each (NY/SF and Fahrenheit/Celsius)
+  - count of distinctt values for one label
+  - the number of labels
+  - the number of distinct metric names
+    - `temperature`
+    - `temperature{city=”NY”}`
+    - `temperature{city=”SF”, unit=”Fahrenheit”}`
+    - `temperature{city=”SF”, unit=”Celsius”}`
+    - `C = 2 x 2 = 4`
+      - two different labels (city, unit) with two different values each (NY/SF and Fahrenheit/Celsius)
 
 ### Ingestion Rate
 
 - per second number of data points inserted into Prometheus
 - depends on:
-	- total number of scraped targets
-	- scrape interval
-	- `ingestion_rate = num_targets * metrics_per_target / scrape_interval`
+  - total number of scraped targets
+  - scrape interval
+  - `ingestion_rate = num_targets * metrics_per_target / scrape_interval`
