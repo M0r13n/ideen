@@ -1,4 +1,3 @@
-
 ```bash
 # Get only the address
 dig leonmortenrichter.de A +noall +answer
@@ -17,5 +16,8 @@ dig leonmortenrichter.de TXT +short
 
 # Trace the resolution
 dig leonmortenrichter.de +trace +short
+
+# Search with search domain
+dig foo +search
 
 ```
