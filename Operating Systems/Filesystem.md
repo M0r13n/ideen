@@ -82,9 +82,20 @@ with open('/tmp/foo.bar', 'wb') as fd:
 - 9 bits per file to access the access on Linux
 
 | Owner | Group | Other |
-| ----- | ----- | ----- |
+|-------|-------|-------|
 | `rwx` | `r-x` | `r--` |
 | `111` | `101` | `100` |
 | `7`   | `5`   | `4`   |
 
-## Mounting
+## Ext4 Casefold
+
+Newer version of the Linux Kernel support the `casefold` Feature of ext4. This enables case-insensitive directories.
+
+```bash
+# Enable the feature
+tune2fs -O casefold /dev/sdX1
+# Verify
+tune2fs -l /dev/sdX1 | grep -i casefold
+# Enable the casefold feature on a per directory basis
+chattr +F /mnt/directory_name
+```
