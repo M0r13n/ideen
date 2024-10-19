@@ -1,0 +1,8 @@
+# Only allow a user that appears in /tmp/allowed_users
+#auth     required   pam_listfile.so item=user sense=allow file=/tmp/allowed_users onerr=fail
+
+# Use the custom PAM module
+auth     required    pam_python.so /tmp/pam_foo.py
+
+# Use the native Linux PAM module
+auth     required    pam_unix.so

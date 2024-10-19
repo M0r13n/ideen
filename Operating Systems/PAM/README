@@ -1,0 +1,7 @@
+# Playing around with PAM
+
+The client is using [pamela.py](https://github.com/minrk/pamela/blob/main/pamela.py) as a wrapper for PAM. It prompts for the current user's password and attempts to authenticate as a service named `some-service`.
+
+**Note:** By default, this service does not exist, so PAM falls back to `/etc/pam.d/other`.
+
+Using `libpam-python`, it is possible to execute Python code with `pam_python.so` located at `/usr/lib/x86_64-linux-gnu/security/pam_python.so`. The `./some-service` file (copied to `/etc/pam.d/some-service`) uses this setup to call `pam_foo.py`, which allows authentication for all users.
