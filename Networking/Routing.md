@@ -9,7 +9,7 @@
     - [Inspect Rules](#inspect-rules)
     - [Custom Rule](#custom-rule)
     - [Route vs. Rule](#route-vs-rule)
-    - [BGB](#bgb)
+    - [BGP](#bgp)
 
 ## Abstract Comparison
 
@@ -115,6 +115,7 @@ $ ip route flush cache
 
 `ip route show table local`
 
-### BGB
+### BGP
 
-- [BGB Security challenges by ACM](https://dl.acm.org/doi/pdf/10.1145/2668152.2668966)
+- [BGP Security challenges by ACM](https://dl.acm.org/doi/pdf/10.1145/2668152.2668966)
+- [RIS-Live](https://ris-live.ripe.net)
