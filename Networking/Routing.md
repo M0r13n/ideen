@@ -1,10 +1,15 @@
 # Routing
 
-- [Abstract Comparison](#abstract-comparison)
-- [A good paper](https://doc.lagout.org/network/inetdoc/Policy_Routing_in_Linux_ENG.pdf)
-- [Technical Routing vs. Policy Routing](#technical-routing-vs-policy-routing)
-- [Evaluation Order](#evaluation-order)
-- [Examples](#examples)
+- [Routing](#routing)
+  - [Abstract Comparison](#abstract-comparison)
+  - [Technical Routing vs. Policy Routing](#technical-routing-vs-policy-routing)
+    - [Analogy](#analogy)
+  - [Evaluation Order](#evaluation-order)
+  - [Examples](#examples)
+    - [Inspect Rules](#inspect-rules)
+    - [Custom Rule](#custom-rule)
+    - [Route vs. Rule](#route-vs-rule)
+    - [BGB](#bgb)
 
 ## Abstract Comparison
 
@@ -104,3 +109,12 @@ $ ip rule add from 10.0.0.0/24 priority 5000 prohibit
 $ ip route flush cache
 ```
 
+### Route vs. Rule
+
+`ip route show` only lists the rules from table `main`. Use `table <table_name>` to inspect other tables:
+
+`ip route show table local`
+
+### BGB
+
+- [BGB Security challenges by ACM](https://dl.acm.org/doi/pdf/10.1145/2668152.2668966)
