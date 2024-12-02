@@ -1,3 +1,4 @@
+import random
 import socket
 import time
 
@@ -9,5 +10,5 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, MULTICAST_TTL)
 
 while True:
-    sock.sendto(b"Hello, World!", (MCAST_GRP, MCAST_PORT))
+    sock.sendto(random.randbytes(12), (MCAST_GRP, MCAST_PORT))
     time.sleep(1)

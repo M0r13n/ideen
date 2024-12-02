@@ -2,9 +2,11 @@
 
 import socket
 
+from jwt import DecodeError
+
 MPORT = 5007
 MGROUP = '224.1.1.1'
-IFADDR = '192.168.64.3'
+IFADDR = '0.0.0.0'
 
 
 def main():
@@ -16,7 +18,11 @@ def main():
     print('Waiting for data...')
     while True:
         received = sock.recv(1500)
-        print('Received packet of {0} bytes'.format(len(received)))
+        try:
+            print(f'Received packet: {received.decode()}')
+        except UnicodeDecodeError:
+            hex_data = received.hex().upper()
+            print(f'Received packet: {" ".join(hex_data[i:i + 4] for i in range(0, len(hex_data), 4))}')
 
 
 if __name__ == '__main__':
