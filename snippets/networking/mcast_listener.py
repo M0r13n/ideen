@@ -11,8 +11,10 @@ IFADDR = '0.0.0.0'
 
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-    sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 32)
-    sock.bind((MGROUP, MPORT))
+
+    # Bind to INADDR_ANY
+    sock.bind(('', MPORT))
+
     sock.setsockopt(socket.SOL_IP, socket.IP_ADD_MEMBERSHIP, socket.inet_aton(MGROUP) + socket.inet_aton(IFADDR))
 
     print('Waiting for data...')
